@@ -19,7 +19,10 @@ app.use(cookieParser());
 
 // cors == cross origin resource sharing
 // if not used ==> one can hit the api from any other url
-app.use(cors({origin:process.env.ORIGIN}));
+app.use(cors({
+    origin:['http://localhost:3000'],
+    credentials:true
+}));
 
 // routes
 app.use("/api/v1/",userRouter,fundraiserRouter,contactRouter);
