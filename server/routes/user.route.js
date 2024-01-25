@@ -9,7 +9,7 @@ userRouter.post('/login',loginUser);
 userRouter.post('/socialAuth',socialAuth);
 
 userRouter.get('/logout',isAutheticated,logoutUser);
-userRouter.get('/refresh',isAutheticated,updateAccessToken);
+userRouter.get('/refresh',updateAccessToken);
 userRouter.get('/getUser',getUser);
 userRouter.get('/me',isAutheticated,getUserInfo);
 

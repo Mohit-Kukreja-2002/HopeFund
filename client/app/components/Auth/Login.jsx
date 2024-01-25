@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 // import { styles } from "../../../app/styles/style";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 
 const schema = Yup.object().shape({
@@ -76,8 +76,8 @@ const Login = ({ setRoute, setOpen, refetch }) => {
                         onChange={handleChange}
                         id="password"
                         placeholder="password!@%"
-                        className={`${errors.password && touched.password && "border-red-500"
-                            } w-full text-black bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
+                        className={`${errors.password && touched.password && "border-red-500"} 
+                        w-full text-black bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
                     />
                     {!show ? (
                         <AiOutlineEyeInvisible

@@ -6,15 +6,49 @@ import NavItem from '../utils/NavItems';
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import Verification from "./Auth/Verification";
+import { toast } from "react-hot-toast";
+import { useLogOutQuery } from "../../redux/features/auth/authApi";
 
 import Image from "next/image";
 import CustomModal from "../utils/customModel";
+import { useSelector } from "react-redux";
+import { useSocialAuthMutation } from "../../redux/features/auth/authApi";
+import { useSession } from "next-auth/react";
 
+const avatar = require("../../public/assets/user.png");
 const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
     const [active, setActive] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
     const [userData, setUserData] = useState({});
+    const { user } = useSelector((state) => state.auth);
+    const { data } = useSession();
+    const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
+    const [logout, setLogout] = useState(false);
+    const {} = useLogOutQuery(undefined, {
+        skip: !logout ? true : false,
+    });
+    // console.log(data);
 
+    useEffect(() => {
+        if (!user) {
+            if (data) {
+                console.log(data.user.name);
+                socialAuth({
+                    email: data.user.email,
+                    name: data.user.name,
+                    avatar: data.user.image,
+                });
+            }
+        }
+        if (data === null) {
+            if (isSuccess) {
+                toast.success("Login Successfully");
+            }
+        }
+        if (data === null) {
+            setLogout(true);
+        }
+    }, [user, data, isSuccess, socialAuth]);
 
     if (typeof window !== "undefined") {
         window.addEventListener("scroll", () => {
@@ -68,11 +102,25 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                         />
                                     </Link>
                                 ) : ( */}
-                                <HiOutlineUserCircle
-                                    size={45}
-                                    className="mr-5 800px:mr-2 text-[#9c3353] cursor-pointer block"
-                                    onClick={() => setOpen(true)}
-                                />
+                                {
+                                    user ? (
+                                        <Link href={'/profile'}>
+                                            <Image
+                                                width={30}
+                                                height={30}
+                                                src={user.avatar ? user.avatar.url : avatar}
+                                                className={`${activeItem===4 ? "border-spacing-1 border-2 border-solid border-[#9c3353]" : ""} w-[40px] h-[40px] items-center text-center rounded-full mr-5 800px:mr-2 bg-[#f084a5] cursor-pointer block`}
+                                                alt="" />
+                                        </Link>
+                                    ) : (
+                                        <HiOutlineUserCircle
+                                            size={45}
+                                            className="mr-5 800px:mr-2 text-[#9c3353] cursor-pointer block"
+                                            onClick={() => setOpen(true)}
+                                        />
+
+                                    )
+                                }
                                 <HiOutlineMenuAlt3
                                     size={45}
                                     className="text-[#9c3353] cursor-pointer block 800px:hidden"
@@ -127,7 +175,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 setRoute={setRoute}
                                 activeItem={activeItem}
                                 component={Login}
-                                // refetch={refetch}
+                            // refetch={refetch}
                             />
                         )}
                     </>
@@ -141,7 +189,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 setRoute={setRoute}
                                 activeItem={activeItem}
                                 component={SignUp}
-                                // refetch={refetch}
+                            // refetch={refetch}
                             />
                         )}
                     </>
@@ -155,7 +203,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 setRoute={setRoute}
                                 activeItem={activeItem}
                                 component={Verification}
-                                // refetch={refetch}
+                            // refetch={refetch}
                             />
                         )}
                     </>

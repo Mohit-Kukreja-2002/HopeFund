@@ -16,20 +16,20 @@ export const isAutheticated = catchAsyncError(
     }
 
     // const decoded = jwt.decode(access_token) as JwtPayload;
-    const decoded = jwt.verify(access_token,process.env.ACCESS_TOKEN)
+    const decoded = jwt.verify(access_token, process.env.ACCESS_TOKEN)
 
     if (!decoded) {
       return next(new ErrorHandler("access token is not valid", 400));
     }
 
     // check if the access token is expired
-    // if (decoded.exp && decoded.exp <= Date.now() / 1000) {
-    //   try {
-    //     await updateAccessToken(req, res, next);
-    //   } catch (error) {
-    //     return next(error);
-    //   }
-    // } else {
+    if (decoded.exp && decoded.exp <= Date.now() / 1000) {
+      try {
+        await updateAccessToken(req, res, next);
+      } catch (error) {
+        return next(error);
+      }
+    } else {
       const user = await redis.get(decoded.id);
 
       if (!user) {
@@ -42,14 +42,14 @@ export const isAutheticated = catchAsyncError(
 
       next();
     }
-//   }
+  }
 );
 
 // validate user role
 export const authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user?.role || "")) {
-      return next(new ErrorHandler(`Role: ${req.user?.role} is not allowed to access this resource`,403));
+      return next(new ErrorHandler(`Role: ${req.user?.role} is not allowed to access this resource`, 403));
     }
     next();
   };

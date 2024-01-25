@@ -46,10 +46,6 @@ export const registrationUser = catchAsyncError(
                 return next(new ErrorHandler("Email already exists", 400));
             }
 
-            // Salting and hashing
-            // const salt = await bcrypt.genSalt(10);
-            // const secured_Pass = await bcrypt.hash(password, salt);
-
             let user = ({
                 name: name,
                 password: password,
@@ -250,18 +246,18 @@ export const socialAuth = catchAsyncError(
 export const updateUserInfo = catchAsyncError(
     async (req, res, next) => {
         try {
-            const { name, email } = req.body;
+            const { name} = req.body;
 
             const userId = req.user?._id;
             const user = await User.findById(userId);
 
-            if (email && user) {
-                const isEmailExist = await User.findOne({ email });
-                if (isEmailExist) {
-                    return next(new ErrorHandler("Email already Exists", 400));
-                }
-                user.email = email
-            }
+            // if (email && user) {
+            //     const isEmailExist = await User.findOne({ email });
+            //     if (isEmailExist) {
+            //         return next(new ErrorHandler("Email already Exists", 400));
+            //     }
+            //     user.email = email
+            // }
 
             if (name && user) {
                 user.name = name;
@@ -273,7 +269,7 @@ export const updateUserInfo = catchAsyncError(
 
             res.status(201).json({
                 success: true,
-                user,
+                // user,
             });
         } catch (error) {
             return next(new ErrorHandler(error.message, 400));
