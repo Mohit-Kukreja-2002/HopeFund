@@ -24,7 +24,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
     const { data } = useSession();
     const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
     const [logout, setLogout] = useState(false);
-    const {} = useLogOutQuery(undefined, {
+    const { } = useLogOutQuery(undefined, {
         skip: !logout ? true : false,
     });
     // console.log(data);
@@ -50,15 +50,15 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
         }
     }, [user, data, isSuccess, socialAuth]);
 
-    if (typeof window !== "undefined") {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 85) {
-                setActive(true);
-            } else {
-                setActive(false);
-            }
-        });
-    }
+    // if (typeof window !== "undefined") {
+    //     window.addEventListener("scroll", () => {
+    //         if (window.scrollY > 85) {
+    //             setActive(true);
+    //         } else {
+    //             setActive(false);
+    //         }
+    //     });
+    // }
 
     const handleClose = (e) => {
         if (e.target.id === "screen") {
@@ -71,7 +71,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
     return (
         <>
             <div className="relative w-full">
-                <div className={`h-[80px] z-[80] w-full shadow-[0_0_30px_0_rgba(156,51,83,.2)]  
+                <div className={`h-[80px] z-[1000] w-full shadow-[0_0_30px_0_rgba(156,51,83,.2)]  
                 ${active ? "fixed top-0 left-0 transition duration-1000 scroll-smooth"
                         : ""
                     }`}
@@ -102,6 +102,19 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                         />
                                     </Link>
                                 ) : ( */}
+                                {activeItem === 5 ?
+                                    <div className='flex items-center justify-center mr-7'>
+                                        <span className='text-[#56bc30] text-sm px-1'>Step 1 </span> of 4
+                                    </div>
+                                    :
+                                    <div className="hidden 700px:flex justify-center items-center py-2
+                                     mr-5 w-[200px] h-[40px] rounded-3xl text-[20px] font-[500] bg-[#9c3353] hover:bg-[#b8355c] text-white">
+                                        <Link href={'/createFund'}>
+                                            Start a fundraiser
+                                        </Link>
+                                    </div>
+
+                                }
                                 {
                                     user ? (
                                         <Link href={'/profile'}>
@@ -109,7 +122,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                                 width={30}
                                                 height={30}
                                                 src={user.avatar ? user.avatar.url : avatar}
-                                                className={`${activeItem===4 ? "border-spacing-1 border-2 border-solid border-[#9c3353]" : ""} w-[40px] h-[40px] items-center text-center rounded-full mr-5 800px:mr-2 bg-[#f084a5] cursor-pointer block`}
+                                                className={`${activeItem === 4 ? "border-spacing-1 border-2 border-solid border-[#9c3353]" : ""} w-[40px] h-[40px] items-center text-center rounded-full mr-5 800px:mr-2 bg-[#f084a5] cursor-pointer block`}
                                                 alt="" />
                                         </Link>
                                     ) : (

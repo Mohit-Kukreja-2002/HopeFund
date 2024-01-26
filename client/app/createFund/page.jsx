@@ -5,6 +5,7 @@ import Heading from "../utils/Heading";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile/Profile.jsx";
 import { useSelector } from "react-redux";
+import SetupFund from "../components/SetupFund/SetupFund";
 // import Footer from "../components/Footer";
 
 
@@ -18,7 +19,7 @@ const Page = (props) => {
         <div className="min-h-screen">
             <Protected>
                 <Heading
-                    title={`Create Fundraiser`}
+                    title={`${user?.name} profile`}
                     description="HopeFund is a platform for helping people raise funds for any need from a community of rich hearted individuals."
                     keywords="Funding,HopeFund,Raise Money,Fundraiser"
                 />
@@ -29,7 +30,7 @@ const Page = (props) => {
                     setRoute={setRoute}
                     route={route}
                 />
-                <Profile user={user} />
+                <SetupFund/>
                 {/* <Footer /> */}
             </Protected>
         </div>

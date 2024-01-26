@@ -39,7 +39,7 @@ const Hero = (props) => {
                         </div>
                         <div className='text-[#5d5d5d] font-[400] text-[16px] mt-2'>Raise funds online for medical emergencies and social causes</div>
                         <div className='mx-auto 1000px:mr-0 1000px:ml-0 flex justify-center items-center my-6 w-[313px] h-[50px] rounded-3xl text-[20px] p-4 font-[500] bg-[#9c3353] hover:bg-[#b8355c] text-white'>
-                            <Link href={'/setupFundraiser'}>Start a fundraiser - its FREE</Link>
+                            <Link href={'/createFund'}>Start a fundraiser - its FREE</Link>
                         </div>
                     </div>
                 </div>
