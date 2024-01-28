@@ -11,6 +11,7 @@ import SetupFund from "../components/SetupFund/SetupFund";
 
 const Page = (props) => {
     const [open, setOpen] = useState(false);
+    const [page, setPage] = useState(1);
     const [activeItem, setActiveItem] = useState(5);
     const [route, setRoute] = useState("Login");
     const { user } = useSelector((state) => state.auth);
@@ -19,7 +20,7 @@ const Page = (props) => {
         <div className="min-h-screen">
             <Protected>
                 <Heading
-                    title={`${user?.name} profile`}
+                    title="Create Fundraiser"
                     description="HopeFund is a platform for helping people raise funds for any need from a community of rich hearted individuals."
                     keywords="Funding,HopeFund,Raise Money,Fundraiser"
                 />
@@ -29,8 +30,12 @@ const Page = (props) => {
                     activeItem={activeItem}
                     setRoute={setRoute}
                     route={route}
+                    page={page}
                 />
-                <SetupFund/>
+                <SetupFund
+                    page={page}
+                    setPage={setPage}
+                />
                 {/* <Footer /> */}
             </Protected>
         </div>

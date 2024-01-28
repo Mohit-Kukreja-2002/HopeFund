@@ -38,7 +38,7 @@ const FundraiseRequestsSchema = new Schema({
         type: String, 
         required: true 
     },
-    creatorImg: { 
+    benefitterImg: { 
         public_id: String,
         url: String, 
     },

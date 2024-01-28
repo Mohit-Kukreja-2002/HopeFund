@@ -1,22 +1,22 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
 import NavItem from '../utils/NavItems';
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import Verification from "./Auth/Verification";
+import CustomModal from "../utils/customModel";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 import { useLogOutQuery } from "../../redux/features/auth/authApi";
-
-import Image from "next/image";
-import CustomModal from "../utils/customModel";
 import { useSelector } from "react-redux";
 import { useSocialAuthMutation } from "../../redux/features/auth/authApi";
 import { useSession } from "next-auth/react";
 
+
 const avatar = require("../../public/assets/user.png");
-const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
+const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
     const [active, setActive] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
     const [userData, setUserData] = useState({});
@@ -32,7 +32,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
     useEffect(() => {
         if (!user) {
             if (data) {
-                console.log(data.user.name);
+                // console.log(data.user.name);
                 socialAuth({
                     email: data.user.email,
                     name: data.user.name,
@@ -104,7 +104,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 ) : ( */}
                                 {activeItem === 5 ?
                                     <div className='flex items-center justify-center mr-7'>
-                                        <span className='text-[#56bc30] text-sm px-1'>Step 1 </span> of 4
+                                        <span className='text-[#56bc30] text-sm px-1'>Step {page} </span> of 4
                                     </div>
                                     :
                                     <div className="hidden 700px:flex justify-center items-center py-2

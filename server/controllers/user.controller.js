@@ -318,7 +318,7 @@ export const updateProfilePicture = catchAsyncError(
 
             res.status(200).json({
                 success: true,
-                user,
+                // user,
             });
         } catch (error) {
             return next(new ErrorHandler(error.message, 400));

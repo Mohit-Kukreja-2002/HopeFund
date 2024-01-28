@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const Page = (props) => {
     const [open, setOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState(5);
+    const [activeItem, setActiveItem] = useState(6);
     const [route, setRoute] = useState("Login");
     const { user } = useSelector((state) => state.auth);
 
@@ -18,7 +18,7 @@ const Page = (props) => {
         <div className="min-h-screen">
             <Protected>
                 <Heading
-                    title={`Create Fundraiser`}
+                    title={`${user?.name} profile`}
                     description="HopeFund is a platform for helping people raise funds for any need from a community of rich hearted individuals."
                     keywords="Funding,HopeFund,Raise Money,Fundraiser"
                 />
