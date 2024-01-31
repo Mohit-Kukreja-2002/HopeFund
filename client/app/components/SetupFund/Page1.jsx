@@ -23,7 +23,8 @@ const Page1 = ({values,setFieldValue}) => {
                         cause
                     </span>
                 </div>
-                <div className='w-[60%] min-w-[170px] 800px:w-[40%] 800px:min-w-[350px] py-4 flex items-center my-auto justify-center flex-col mb-[30px] rounded-[4px] border-[1px] border-solid border-[#fff] shadow-[0_2px_2px_0_rgba(0,0,0,.14),0_3px_1px_-2px_rgba(0,0,0,.12),0_1px_5px_0_rgba(0,0,0,.2)]'>
+                <div className='min-w-[350px] 800px:w-[40%] 800px:min-w-[350px] py-4 flex items-center my-auto justify-center flex-col mb-[30px] rounded-[4px] border-[1px] border-solid border-[#fff] shadow-[0_2px_2px_0_rgba(0,0,0,.14),0_3px_1px_-2px_rgba(0,0,0,.12),0_1px_5px_0_rgba(0,0,0,.2)]'>
+                {/* <div className='w-[60%] min-w-[170px] 800px:w-[40%] 800px:min-w-[350px] py-4 flex items-center my-auto justify-center flex-col mb-[30px] rounded-[4px] border-[1px] border-solid border-[#fff] shadow-[0_2px_2px_0_rgba(0,0,0,.14),0_3px_1px_-2px_rgba(0,0,0,.12),0_1px_5px_0_rgba(0,0,0,.2)]'> */}
                     <span className='h-0 w-0 top-[-12px] border-solid border-l-transparent border-r-transparent absolute border-l-[8px] border-r-[8px] border-b-[11px] border-b-[#f5f5f5]'></span>
                     <span className=' h-0 w-0 border-solid border-r-transparent border-l-transparent absolute border-l-[6px] border-r-[6px] border-b-[13px] border-b-[#fff] top-[-11.5px]'></span>
                     <div className='flex flex-col items-center justify-center w-[90%] 800px:flex-row mb-3 800px:mb-5'>

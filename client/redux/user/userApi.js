@@ -54,6 +54,14 @@ export const userApi = apiSlice.injectEndpoints({
         credentials: "include",
       }),
     }),
+    updateFundIDArray: builder.mutation({
+      query: (id) => ({
+        url: `update-user-fundArray`,
+        body: {id},
+        method: "PUT",
+        credentials: "include",
+      }),
+    })
   }),
 });
 
@@ -63,5 +71,6 @@ export const {
   useUpdatePasswordMutation,
   useGetAllUsersQuery,
   useUpdateUserRoleMutation,
-  useDeleteUserMutation
+  useDeleteUserMutation,
+  useUpdateFundIDArrayMutation
 } = userApi;

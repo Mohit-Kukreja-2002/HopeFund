@@ -1,11 +1,13 @@
-'use client'
-import React, { FC, useState } from "react";
+"use client"
+import React, { FC, useEffect, useState } from "react";
 import Protected from "../hooks/useProtected";
 import Heading from "../utils/Heading";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile/Profile.jsx";
 import { useSelector } from "react-redux";
 import SetupFund from "../components/SetupFund/SetupFund";
+import { redirect } from "next/navigation";
+import { useUpdateFundIDArrayMutation } from "@/redux/user/userApi";
 // import Footer from "../components/Footer";
 
 
@@ -14,7 +16,15 @@ const Page = (props) => {
     const [page, setPage] = useState(1);
     const [activeItem, setActiveItem] = useState(5);
     const [route, setRoute] = useState("Login");
-    const { user } = useSelector((state) => state.auth);
+    const [success, setSuccess] = useState(false);
+    // const { user } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if(success){
+            setSuccess(false);
+            redirect('/profile')
+        }
+    },[success])
 
     return (
         <div className="min-h-screen">
@@ -35,6 +45,7 @@ const Page = (props) => {
                 <SetupFund
                     page={page}
                     setPage={setPage}
+                    setSuccess={setSuccess}
                 />
                 {/* <Footer /> */}
             </Protected>

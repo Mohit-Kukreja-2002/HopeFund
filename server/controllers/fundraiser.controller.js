@@ -8,35 +8,21 @@ import cloudinary from "cloudinary";
 
 export const createFundraiserRequest = catchAsyncError(
   async (req, res, next) => {
-    if (req.method !== 'POST') {
-      return res.status(405).end(); //! Method Not Allowed
-    }
-    //! Checking if the inputs are valid or not
-    const validationMiddleware = [
-      body('creatorMail', 'Enter a valid email').isEmail(),
-    ];
-
-    // Run validation middleware
-    await Promise.all(validationMiddleware.map((middleware) => middleware.run(req)));
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
     try {
-      const data = req.body;
-      const coverImg = data.coverImg;
-      if (coverImg) {
-        const myCloud = await cloudinary.v2.uploader.upload(coverImg, {
-          folder: "fundraisers",
-        });
+      // console.log("backend");
+      const data = req.body.data;
+      // console.log(data);
+      // const coverImg = data.coverImg;
+      // if (coverImg) {
+      //   const myCloud = await cloudinary.v2.uploader.upload(coverImg, {
+      //     folder: "fundraisers",
+      //   });
 
-        data.coverImg = {
-          public_id: myCloud.public_id,
-          url: myCloud.secure_url,
-        };
-      }
+      //   data.coverImg = {
+      //     public_id: myCloud.public_id,
+      //     url: myCloud.secure_url,
+      //   };
+      // }
       createFundraiser(data, res, next);
     }
     catch (err) {
@@ -135,6 +121,28 @@ export const getAllFundraisers = catchAsyncError(
       res.status(200).json({
         success: true,
         fundraisers,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
+    }
+  }
+);
+// Get All Fundraisers in order of creation
+export const getFundraisersByUser = catchAsyncError(
+  async (req, res, next) => {
+    try {
+      // console.log(req);
+      // console.log(req.user.createdFunds);
+      const donationArray = req.user.createdFunds;
+      let resArray = [];
+      for(const id of donationArray){
+        const fundraiserData = await fundRaiseModel.findById(id);
+        resArray.push(fundraiserData);
+      }
+      // console.log(resArray);
+      res.status(200).json({
+        success: true,
+        resArray,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 400));

@@ -6,12 +6,13 @@ import { toast } from "react-hot-toast";
 import { useLogOutQuery } from "../../../redux/features/auth/authApi.js";
 
 import ProfileInfo from "./ProfileInfo";
+import YourFunds from "./YourFunds.jsx";
 // import ChangePassword from "./ChangePassword";
 // import CourseCard from "../Course/CourseCard";
 // import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 
 
-const Profile = ({ user }) => {
+const Profile = ({ user, active, setActive }) => {
   const [scroll, setScroll] = useState(false);
   const [avatar, setAvatar] = useState(null);
   //   const [courses, setCourses] = useState([]);
@@ -21,8 +22,6 @@ const Profile = ({ user }) => {
   const {} = useLogOutQuery(undefined, {
     skip: !logout ? true : false,
   });
-
-  const [active, setActive] = useState(1);
 
   const logOutHandler = async () => {
     setLogout(true);
@@ -71,11 +70,11 @@ const Profile = ({ user }) => {
         </div>
       )}
 
-      {/* {active === 2 && (
+      {active === 2 && (
         <div className="w-full h-full bg-transparent mt-[80px]">
-          <ChangePassword />
+          <YourFunds user={user}/>
         </div>
-      )} */}
+      )}
 
       {/* {active === 3 && (
         <div className="w-full pl-7 px-2 800px:px-10 800px:pl-8 mt-[80px]">

@@ -9,6 +9,9 @@ import Link from "next/link";
 import * as Yup from "yup";
 import { useSelector } from 'react-redux'
 import { useFormik } from "formik";
+import { useCreateFundRaiserMutation } from "@/redux/fund/fundApi";
+import toast from "react-hot-toast";
+import { useUpdateFundIDArrayMutation } from "@/redux/user/userApi";
 
 const schema = Yup.object().shape({
     // Page 1
@@ -19,8 +22,8 @@ const schema = Yup.object().shape({
     // Page 2
     benefitter: Yup.string(),
     benefitterImg : Yup.object().shape({
-        public_id: String,
-        url: String,
+        public_id: Yup.string(),
+        url: Yup.string(),
     }),
     benefitterCreatorRelation: Yup.string(),
     benefitterName: Yup.string(),
@@ -37,41 +40,56 @@ const schema = Yup.object().shape({
     hospitalLocation: Yup.string(),
     ailment: Yup.string(),
 
-
+    // Page 4
     fundraiserTitle : Yup.string(),
     fundraiserStory : Yup.string(),
     coverImg: Yup.object().shape({
-        public_id: String,
-        url: String,
+        public_id: Yup.string(),
+        url: Yup.string(),
     }),
 });
 
 
-const SetupFund = ({ page, setPage}) => {
+const SetupFund = ({ page, setPage,setSuccess}) => {
     const { user } = useSelector((state) => state.auth);
     const backImg = require('../../../public/assets/fixedbottom.png')
+    const [createFund,{isSuccess, error}] = useCreateFundRaiserMutation();
     const [scroll, setScroll] = useState(false);
-    // console.log(user);
+    const [updateFundArray, { isSuccess:success, error:isError }] = useUpdateFundIDArrayMutation();
+
+    useEffect(()=>{
+        if(isSuccess){
+            toast.success("Fundraiser created successfully");
+            setSuccess(true);
+        }
+        if(error){
+            toast.error("Fundraiser creation error",error);
+        }
+    },[isSuccess,error,setSuccess]);
 
     const formik = useFormik({
         initialValues: { 
             category: "medical", creatorMail: user.email, createdBy: user.name,
-            benefitter: "", benefitterCreatorRelation:"", benefitterName:"", benefitterAge: "", benefitterGender: "Male",
-            benefitterImg:{public_id:"",url:""}, 
+            benefitter: "", benefitterCreatorRelation:"", benefitterName:"", 
+            benefitterAge: "", benefitterGender: "Male",benefitterImg:{public_id:"",url:""}, 
             benefitterContact:"", benefitterAddress:"",
-            amountRequired:"",endDateToRaise:Date.now(), includeTaxBenefit:"false",
-            hospitalLocation:"", hospitalName:"", ailment:"",
+            amountRequired:"", hospitalLocation:"", hospitalName:"", ailment:"",
+            endDateToRaise:(new Date()).toISOString().split('T')[0], includeTaxBenefit:"false",
             fundraiserStory:"", fundraiserTitle:"", coverImg:{public_id:"",url:""},
         },
         validationSchema: schema,
-        //  {values.category, creatorMail, createdBy},
-        onSubmit: async ({values}) => {
-            // const data ={values};
-            // await cr( data );
-        },
+        onSubmit : async (value) => {
+            const data = value;
+            let res=await createFund(data);
+            if(res.data.success){
+                let res1=await updateFundArray(res.data.fundraise._id);
+                console.log(res1);
+            }
+            console.log(res);
+        }
     });
 
-    const { errors, touched, values, handleChange, handleSubmit, setFieldValue } = formik;
+    const { errors, touched, values, handleChange,handleSubmit, setFieldValue } = formik;
 
     if (typeof window !== "undefined") {
         window.addEventListener("scroll", () => {
@@ -84,7 +102,7 @@ const SetupFund = ({ page, setPage}) => {
     }
 
     return (
-        <>
+        <form onSubmit={handleSubmit}>
             <div className="w-[85%] flex mx-auto mb-[20px] 800px:mb-[60px]">
                 {page === 1 && (
                     <div className="w-full h-full bg-transparent mt-[30px]">
@@ -119,21 +137,20 @@ const SetupFund = ({ page, setPage}) => {
 
                     <div className="flex">
                         <div className="">
-                            {page > 1 && <button onClick={() => setPage(page - 1)} className='w-fit ml-5 underline underline-offset-4 text-white py-2 text-[15px] '>Back</button>}
+                            {page > 1 && <button type="button" onClick={() => setPage(page - 1)} className='w-fit ml-5 underline underline-offset-4 text-white py-2 text-[15px] '>Back</button>}
                         </div>
                         <div className="ml-auto">
-                            {page > 0 && <button className={` text-white mr-2 600px:mr-4 py-2 text-[15px] underline underline-offset-4`}><Link href={'/'}>Close</Link></button>}
+                            {page > 0 && <button type="button" className={` text-white mr-2 600px:mr-4 py-2 text-[15px] underline underline-offset-4`}><Link href={'/'}>Close</Link></button>}
                             {page === 4 &&
-                                <button onClick={handleSubmit} className='rounded-full mr-2 600px:mr-4 w-[90px] 800px:w-[120px] text-[#9c3353] py-2 bg-[#fff] text-[15px] '>Submit</button>
+                                <button type="submit" className='rounded-full mr-2 600px:mr-4 w-[90px] 800px:w-[120px] text-[#9c3353] py-2 bg-[#fff] text-[15px] '>Submit</button>
                             }{page !== 4 &&
-                                <button onClick={() => setPage(page + 1)} className='rounded-full mr-2 600px:mr-4 w-[90px] 800px:w-[120px] text-[#9c3353] py-2 bg-[#fff] text-[15px] '>Continue</button>
+                                <button type="button" onClick={() => setPage(page + 1)} className='rounded-full mr-2 600px:mr-4 w-[90px] 800px:w-[120px] text-[#9c3353] py-2 bg-[#fff] text-[15px] '>Continue</button>
                             }
-
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </form>
     );
 };
 

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React, { FC } from "react";
 import avatarDefault from "../../../public/assets/user.png";
-import { RiLockPasswordLine } from "react-icons/ri";
+// import { RiLockPasswordLine } from "react-icons/ri";
 import { FaDonate } from "react-icons/fa";
 import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { BsFillCollectionFill } from "react-icons/bs";
 import Link from "next/link";
 
 const SideBarProfile = ({ user, active, avatar, setActive, logOutHandler, }) => {
@@ -31,9 +32,9 @@ const SideBarProfile = ({ user, active, avatar, setActive, logOutHandler, }) => 
             <div
                 className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 2 ? " bg-[#9c3353]" : "bg-transparent"}`}
                 onClick={() => setActive(2)}>
-                <RiLockPasswordLine size={20} className={`${active === 2 ? "text-white" : " text-black"}  `} />
+                <BsFillCollectionFill size={20} className={`${active === 2 ? "text-white" : " text-black"}  `} />
                 <h5 className={`hidden pl-2 ${active === 2 ? "text-white" : " text-black"} 800px:block font-Poppins`}>
-                    Change Password
+                    Your Fundraisers
                 </h5>
             </div>
             <div

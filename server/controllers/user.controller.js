@@ -246,18 +246,10 @@ export const socialAuth = catchAsyncError(
 export const updateUserInfo = catchAsyncError(
     async (req, res, next) => {
         try {
-            const { name} = req.body;
+            const { name } = req.body;
 
             const userId = req.user?._id;
             const user = await User.findById(userId);
-
-            // if (email && user) {
-            //     const isEmailExist = await User.findOne({ email });
-            //     if (isEmailExist) {
-            //         return next(new ErrorHandler("Email already Exists", 400));
-            //     }
-            //     user.email = email
-            // }
 
             if (name && user) {
                 user.name = name;
@@ -270,6 +262,28 @@ export const updateUserInfo = catchAsyncError(
             res.status(201).json({
                 success: true,
                 // user,
+            });
+        } catch (error) {
+            return next(new ErrorHandler(error.message, 400));
+        }
+    }
+);
+
+export const updateUserFundIdArray = catchAsyncError(
+    async (req, res, next) => {
+        try {
+            const { id } = req.body;
+
+            const userId = req.user?._id;
+            const user = await User.findById(userId);
+
+            
+            user.createdFunds.push(id);
+            await user?.save();
+            await redis.set(userId, JSON.stringify(user));
+
+            res.status(201).json({
+                success: true,
             });
         } catch (error) {
             return next(new ErrorHandler(error.message, 400));
@@ -326,23 +340,23 @@ export const updateProfilePicture = catchAsyncError(
     }
 );
 
-export const getUser=catchAsyncError(
-    async(req,res,next) => {
+export const getUser = catchAsyncError(
+    async (req, res, next) => {
         if (req.method !== "GET") {
             return res.status(405).end(); //! Method Not Allowed
         }
         try {
             const { email } = req.body;
             let user = await User.findOne({ email: email });
-            if(user){
-                res.status(200).json({ 
-                    success: true, 
-                    user 
+            if (user) {
+                res.status(200).json({
+                    success: true,
+                    user
                 });
-            }else{
+            } else {
                 res.status(400).json({
-                    success:false,
-                    "error":"not found"
+                    success: false,
+                    "error": "not found"
                 })
             }
         } catch (error) {

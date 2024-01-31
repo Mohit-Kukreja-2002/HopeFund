@@ -18,9 +18,12 @@ const Page2 = ({ values, user, setFieldValue }) => {
         if (values.benefitterImg.public_id != "" && values.benefitterImg.public_id != user.avatar.public_id) {
             deleteBenefitter(values.benefitterImg.public_id);
         }
-        { values.benefitterImg.public_id = user.avatar.public_id }
-        { values.benefitterImg.url = user.avatar.url }
+        if(user.avatar){
+            { values.benefitterImg.public_id = user.avatar.public_id }
+            { values.benefitterImg.url = user.avatar.url }
+        }
         values.benefitterCreatorRelation = "self"
+        values.benefitterName = user.name
     }
 
     const divref = useRef();
@@ -76,9 +79,9 @@ const Page2 = ({ values, user, setFieldValue }) => {
                     <span className='absolute top-[3px] right-[6px]'><IoMdArrowDropdown onClick={() => toggleBlockHidden()} /></span>
                 </span>
             </span>
-            <div ref={divref} className={`${values.benefitter === "" ? "block" : "hidden"} transition-all delay-200 ease-in-out text-[#282828] relative 350px 700px 500px:w-[480px] h-[535px] z-[2000] rounded-md border-[1px_solid_#cecece] bg-white p-[6%_5%_3%] shadow-[0_0_10px_1px_#d3d3d3] top-[-35px] right-[0px]`}>
-                <span className=' h-0 w-0 top-[-14px] right-[26.2%] border-solid border-l-transparent border-r-transparent absolute border-l-[12px] border-r-[12px] border-b-[14px] border-b-[#cecece]'></span>
-                <span className=' h-0 w-0 border-solid border-r-transparent border-l-transparent absolute border-l-[9px] border-r-[9px] border-b-[12px] border-b-[#fff] top-[-11.5px] right-[26.6%]'></span>
+            <div ref={divref} className={`${values.benefitter === "" ? "block" : "hidden"} transition-all delay-200 ease-in-out text-[#282828] relative w-full min-w-[350px] max-w-[600px] min-h-[535px] z-[2000] rounded-md border-[1px_solid_#cecece] bg-white p-[6%_5%_3%] shadow-[0_0_10px_1px_#d3d3d3] top-[-35px] right-[0px]`}>
+                <span className=' h-0 w-0 top-[-14px] border-solid border-l-transparent border-r-transparent absolute border-l-[12px] border-r-[12px] border-b-[14px] border-b-[#cecece] right-[18%] 500px:right-[27%]'></span>
+                <span className=' h-0 w-0 border-solid border-r-transparent border-l-transparent absolute border-l-[9px] border-r-[9px] border-b-[12px] border-b-[#fff] top-[-11.5px] right-[18%] 500px:right-[27%]'></span>
                 <ul className='absolute m-[0_0_10px] w-full p-[0_10px] top-[35px] left-0'>
                     <li className='leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left mt-[15px] '>
                         <div className='p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem]'>
@@ -89,31 +92,31 @@ const Page2 = ({ values, user, setFieldValue }) => {
                     </li>
                     <li className="leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left mt-[35px]">
                         <label className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] inline-block text-[14px] w-full type-title">My family<span className='text-[12px]'>, next of kin &amp; relatives</span></label>
-                        <div className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] flex 500px:flex-row flex-col">
-                            <div className="w-full mr-5px">
+                        <div className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] grid grid-cols-2">
+                            <div className="mr-5px">
                                 <div onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "relative", false) }} className='cursor-pointer my-auto w-full bg-[#f8f8f8] flex items-center text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                     <GoPerson size={22} className='ml-4' />
-                                    <div className='my-auto p-[10px_10px_5px]'>Individual</div>
+                                    <div className='my-auto w-full p-[10px_10px_5px]'>Individual</div>
                                 </div>
                             </div>
-                            <div className="w-full ml-5">
+                            <div className="ml-5">
                                 <div onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "relative", false) }} className='cursor-pointer my-auto w-full bg-[#f8f8f8] flex items-center text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                     <TiGroup size={22} className='ml-4' />
-                                    <div className='my-auto p-[10px_10px_5px]'>Group</div>
+                                    <div className='my-auto w-full p-[10px_10px_5px]'>Group</div>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li className="leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left  mt-[55px]">
                         <label className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] inline-block text-[14px] w-full type-title">My friends<span className='text-[12px]'>, classmates, colleagues & people I know</span></label>
-                        <div className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] flex 500px:flex-row flex-col">
-                            <div className="w-full mr-5px">
+                        <div className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] grid grid-cols-2">
+                            <div className="mr-5px">
                                 <div onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "friend", false) }} className='cursor-pointer my-auto w-full bg-[#f8f8f8] flex items-center text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                     <GoPerson size={22} className='ml-4' />
                                     <div className='my-auto p-[10px_10px_5px]'>Individual</div>
                                 </div>
                             </div>
-                            <div className="w-full ml-5">
+                            <div className="ml-5">
                                 <div onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "friend", false) }} className='cursor-pointer my-auto w-full bg-[#f8f8f8] flex items-center text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                     <TiGroup size={22} className='ml-4' />
                                     <div className='my-auto p-[10px_10px_5px]'>Group</div>
@@ -123,14 +126,14 @@ const Page2 = ({ values, user, setFieldValue }) => {
                     </li>
                     <li className="leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left  mt-[55px]">
                         <label className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] inline-block text-[14px] w-full type-title">Others<span className='text-[12px]'> (everyone else: people, animals, businesses, communities etc)</span></label>
-                        <div className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] flex 500px:flex-row flex-col">
-                            <div className="w-full mr-5px">
+                        <div className="p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] grid grid-cols-2">
+                            <div className="mr-5px">
                                 <div onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "others", false) }} className='cursor-pointer my-auto w-full bg-[#f8f8f8] flex items-center text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                     <GoPerson size={22} className='ml-4' />
                                     <div className='my-auto p-[10px_10px_5px]'>Individual</div>
                                 </div>
                             </div>
-                            <div className="w-full ml-5">
+                            <div className="ml-5">
                                 <div onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "others", false) }} className='cursor-pointer my-auto w-full bg-[#f8f8f8] flex items-center text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                     <TiGroup size={22} className='ml-4' />
                                     <div className='my-auto p-[10px_10px_5px]'>Group</div>
@@ -138,7 +141,7 @@ const Page2 = ({ values, user, setFieldValue }) => {
                             </div>
                         </div>
                     </li>
-                    <li className='leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left mt-[60px] '>
+                    <li className='leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left mt-[90px] '>
                         <div className='p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] '>
                             <div className='cursor-pointer my-auto w-full bg-[#f8f8f8] text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                 <div className="my-auto p-[10px_10px_5px]" onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "NGO", false) }}>
@@ -149,7 +152,6 @@ const Page2 = ({ values, user, setFieldValue }) => {
                                     <div className='ml-4'>
                                         A registered not-for-profit that has a valid PAN card issued in its name
                                     </div>
-
                                 </div>
                             </div>
                         </div>

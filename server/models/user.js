@@ -42,12 +42,14 @@ const UserSchema = new Schema({
         public_id: String,
         url: String,
     },
+    createdFunds : [],
 }, { timestamps: true });
 
 UserSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
         return next();
     }
+    
     try {
         this.password = await bcrypt.hash(this.password, 10);
         return next();

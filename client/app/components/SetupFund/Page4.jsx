@@ -71,7 +71,7 @@ const Page4 = ({ values, setFieldValue }) => {
                     </div>
                 </label>
             </div>
-            <div className='mt-8 pb-16 p-8 w-[300px] 400px:w-[400px] 500px:w-[480px] items-center border-solid border-2 border-[#beb0b4] mb-10 rounded-3xl overflow-hidden shadow-2xl'>
+            <div className='mt-8 pb-16 p-8 w-[90%] min-w-[340px] 500px:w-[480px] items-center border-solid border-2 border-[#beb0b4] mb-10 rounded-3xl overflow-hidden shadow-2xl'>
                 <div>
                     <p className='text-center'>Name your fundraiser</p>
                     <input onChange={(e) => setFieldValue('fundraiserTitle', e.target.value, false)} value={values.fundraiserTitle} type="text" name="fundraiserTitle" id="title" className='flex-1 w-full p-2 py-1 text-sm text-center text-gray-600 border-b-2 border-gray-400 outline-none align-centre' placeholder="Eg: Give Your Fundraiser a title." />

@@ -33,10 +33,14 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
         if (!user) {
             if (data) {
                 // console.log(data.user.name);
+                console.log(data);
                 socialAuth({
                     email: data.user.email,
                     name: data.user.name,
-                    avatar: data.user.image,
+                    avatar: {
+                        public_id: data.user.image,
+                        url: data.user.image
+                    }
                 });
             }
         }

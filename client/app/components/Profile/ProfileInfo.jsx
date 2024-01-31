@@ -78,7 +78,6 @@ const ProfileInfo = ({ avatar, user }) => {
         </div>
       </div>
       <br />
-      <br />
       <div className="w-full pl-6 800px:pl-10">
         <form onSubmit={handleSubmit}>
           <div className="800px:w-[50%] m-auto block pb-4">

@@ -12,55 +12,9 @@ const Page3 = ({ values, setFieldValue }) => {
                     </span>
                     cause
                 </span>
-                {/* <div className='relative mb-[30px] w-[549px] rounded-[4px] border-[1px] border-solid border-[#fff] shadow-[0_2px_2px_0_rgba(0,0,0,.14),0_3px_1px_-2px_rgba(0,0,0,.12),0_1px_5px_0_rgba(0,0,0,.2)]'>
-                    <span className=' h-0 w-0 top-[-12px] right-[25%] border-solid border-l-transparent border-r-transparent absolute border-l-[8px] border-r-[8px] border-b-[11px] border-b-[#f5f5f5]'></span>
-                    <span className=' h-0 w-0 border-solid border-r-transparent border-l-transparent absolute border-l-[6px] border-r-[6px] border-b-[13px] border-b-[#fff] top-[-11.5px] right-[25.5%]'></span>
-                    <ul className='m-[14px_0] p-[0_14px] text-[16px]'>
-                        <div className='flex mt-[10px]'>
-                            <li className='hover:bg-transparent cursor-pointer p-[0_5px] w-[50%] ' onClick={() => handleCauseChange("medical")}>
-                                <span className={`${cause === "medical" ? " border-[#eaeaea] bg-[#691a47] text-[#fff] " : "bg-white text-[#282828]"} text-[20px] py-4 align-middle items-center rounded w-[100%] relative border-[1px] border-solid border-[#ecedee] flex `}>
-                                    {cause === "medical" && <AiOutlineCheck className='ml-3' />}
-                                    <div className='flex'>
-                                        <RiStethoscopeLine size={20} className={`${cause !== "medical" ? "ml-10 mr-3 text-[#9c3353]" : "text-white mx-3"} w-6 h-6`} />
-                                        <span className='tracking-wider'>Medical</span>
-                                    </div>
-                                </span>
-                            </li>
-                            <li className='hover:bg-transparent cursor-pointer p-[0_5px] w-[50%]' onClick={() => handleCauseChange("education")}>
-                                <span className={`${cause === "education" ? " border-[#eaeaea] bg-[#691a47] text-[#fff] " : "bg-white text-[#282828]"} text-[20px] py-4 align-middle items-center rounded w-[100%] relative border-[1px] border-solid border-[#ecedee] flex `}>
-                                    {cause === "education" && <AiOutlineCheck className='ml-3' />}
-                                    <div className='flex'>
-                                        <MdSchool size={20} className={`${cause !== "education" ? "ml-10 mr-3 text-[#9c3353]" : "text-white mx-3"} w-6 h-6`} />
-                                        <span className='tracking-wider'>Education</span>
-                                    </div>
-                                </span>
-                            </li>
-                        </div>
-                        <div className='flex my-[10px]'>
-                            <li className='hover:bg-transparent cursor-pointer p-[0_5px] w-[50%]' onClick={() => handleCauseChange("memorial")}>
-                                <span className={`${cause === "memorial" ? " border-[#eaeaea] bg-[#691a47] text-[#fff] " : "bg-white text-[#282828]"} text-[20px] py-4 align-middle items-center rounded w-[100%] relative border-[1px] border-solid border-[#ecedee] flex `}>
-                                    {cause === "memorial" && <AiOutlineCheck className='ml-3' />}
-                                    <div className='flex'>
-                                        <GiCandleLight size={20} className={`${cause !== "memorial" ? "ml-10 mr-3 text-[#9c3353]" : "text-white mx-3"} w-6 h-6`} />
-                                        <span className='tracking-wider'>Memorial</span>
-                                    </div>
-                                </span>
-                            </li>
-                            <li className='hover:bg-transparent cursor-pointer p-[0_5px] w-[50%]' onClick={() => handleCauseChange("others")}>
-                                <span className={`${cause === "others" ? " border-[#eaeaea] bg-[#691a47] text-[#fff] " : "bg-white text-[#282828]"} text-[20px] py-4 align-middle items-center rounded w-[100%] relative border-[1px] border-solid border-[#ecedee] flex `}>
-                                    {cause === "others" && <AiOutlineCheck className='ml-3' />}
-                                    <div className='flex'>
-                                        <BsThreeDots size={20} className={`${cause !== "others" ? "ml-10 mr-3 text-[#9c3353]" : "text-white mx-3"} w-6 h-6`} />
-                                        <span className='tracking-wider'>Others</span>
-                                    </div>
-                                </span>
-                            </li>
-                        </div>
-                    </ul>
-                </div> */}
                 {/* medical */}
                 {values.category === "medical"
-                    && <div className='flex justify-center w-[80%] 800px:w-[40%] 800px:min-w-[400px] border p-4 shadow-[0_0_7px_rgba(31,156,51,.32549)]'>
+                    && <div className='flex justify-center w-[80%] min-w-[350px] 800px:w-[40%] 800px:min-w-[400px] border p-4 shadow-[0_0_7px_rgba(31,156,51,.32549)]'>
                         <div className='my-5 space-y-10 text-gray-500'>
                             <div className='text-center'>
                                 <span>I want to raise &#8377;</span>
@@ -74,9 +28,9 @@ const Page3 = ({ values, setFieldValue }) => {
                                     <p className='absolute text-[13px] top-[-16px] left-[-18px]'>End Date</p>
                                 </div>
                             </div>
-                            <div className='flex justify-center'>
-                                <div className='my-auto w-[70%] 600px:w-[50%] text-sm text-black'>Do you want donors to receive tax benefits for their donation?</div>
-                                <div className='flex justify-center flex-col 600px:flex-row 600px:w-[40%] my-auto'>
+                            <div className='justify-center 550px:flex'>
+                                <div className='my-auto w-[100%] 550px:w-[50%] text-sm text-black'>Do you want donors to receive tax benefits for their donation?</div>
+                                <div className='flex w-[100%] justify-center flex-row 550px:w-[40%] my-auto'>
                                     {/* <div className="ml-3" x-data="app"> */}
                                     <div>
                                         <input value="true" type="radio" id="Yes" className="hidden peer" onClick={() => setFieldValue('includeTaxBenefit', "true", false)} />
@@ -100,7 +54,7 @@ const Page3 = ({ values, setFieldValue }) => {
 
                 {/* education and others */}
                 {(values.category === "education" || values.category === "others")
-                    && <div className='flex justify-center w-[80%] 800px:w-[40%] 800px:min-w-[400px] border p-4 shadow-[0_0_7px_rgba(31,156,51,.32549)]'>
+                    && <div className='flex justify-center w-[80%] min-w-[350px] 800px:w-[40%] 800px:min-w-[400px] border p-4 shadow-[0_0_7px_rgba(31,156,51,.32549)]'>
                         <div className='my-5 space-y-10 text-gray-500'>
                             <div className='text-center'>
                                 <span>I want to raise &#8377;</span>
@@ -120,7 +74,7 @@ const Page3 = ({ values, setFieldValue }) => {
 
                 {/* Memorial */}
                 {values.category === "memorial" &&
-                    <div className='flex justify-center w-[80%] 800px:w-[40%] 800px:min-w-[400px] border p-4 shadow-[0_0_7px_rgba(31,156,51,.32549)]'>
+                    <div className='flex justify-center w-[80%] min-w-[350px] 800px:w-[40%] 800px:min-w-[400px] border p-4 shadow-[0_0_7px_rgba(31,156,51,.32549)]'>
                         <div className='my-5 space-y-10 text-gray-500'>
                             <div className='text-center'>
                                 <span>I want to raise &#8377;</span>
@@ -134,9 +88,9 @@ const Page3 = ({ values, setFieldValue }) => {
                                     <p className='absolute text-[13px] top-[-16px] left-[-18px]'>End Date</p>
                                 </div>
                             </div>
-                            <div className='flex justify-center'>
-                                <div className='my-auto w-[70%] 600px:w-[50%] text-sm text-black'>Do you want donors to receive tax benefits for their donation?</div>
-                                <div className='flex justify-center flex-col 600px:flex-row 600px:w-[40%] my-auto'>
+                            <div className='justify-center 550px:flex'>
+                                <div className='my-auto w-[100%] 550px:w-[50%] text-sm text-black'>Do you want donors to receive tax benefits for their donation?</div>
+                                <div className='flex w-[100%] justify-center flex-row 550px:w-[40%] my-auto'>
                                     <div>
                                         <input value="true" type="radio" id="Yes" className="hidden peer" onClick={() => setFieldValue('includeTaxBenefit', "true", false)} />
                                         <label htmlFor="Yes" className={(values.includeTaxBenefit == "true") ? "block p-2 px-8 600px:px-6 text-center cursor-pointer select-none bg-green-500 font-bold text-white" : "block px-8 600px:px-6 p-2 text-center cursor-pointer select-none"}>Yes</label>

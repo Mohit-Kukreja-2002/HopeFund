@@ -33,7 +33,6 @@ const Login = ({ setRoute, setOpen, refetch }) => {
         if (isSuccess) {
             toast.success("Login Successfully!");
             setOpen(false);
-            // refetch();
         }
         if (error) {
             if ("data" in error) {
