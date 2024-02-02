@@ -1,5 +1,5 @@
 import { apiSlice } from "../features/api/apiSlice";
-import { fundRegistration, userFundArray } from "./fundSlice";
+import { fundByType, fundBySearch, fundRegistration, userFundArray, allFundsByUrgency } from "./fundSlice";
 
 export const fundApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -75,6 +75,65 @@ export const fundApi = apiSlice.injectEndpoints({
                 }
             }
         }),
+        getFundsBySearch: builder.mutation({
+            query: (search) =>({
+                url: 'fundraiserBySearch',
+                method: "POST",
+                body: { search },
+                credentials: "include",
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(
+                        fundBySearch({
+                            fundOfSearch: result.data.fundraisers,
+                        })
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }),
+        getFundsByType: builder.mutation({
+            query: (type) =>({
+                url: 'fundraiserByType',
+                method: "POST",
+                body: { type },
+                credentials: "include",
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(
+                        fundByType({
+                            fundOfType: result.data.fundraisers,
+                        })
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }),
+        getAllFunds: builder.mutation({
+            query: () =>({
+                url: 'getAllFundsByUrgency',
+                method: "GET",
+                credentials: "include",
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(
+                        allFundsByUrgency({
+                            allFundsOfUrgency: result.data.fundraisers,
+                        })
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }),
     })
 })
 
@@ -85,4 +144,7 @@ export const {
     useAddBenfitterImgMutation,
     useAddCoverImgMutation,
     useGetUserFundsMutation,
+    useGetFundsByTypeMutation,
+    useGetFundsBySearchMutation,
+    useGetAllFundsMutation,
 } = fundApi

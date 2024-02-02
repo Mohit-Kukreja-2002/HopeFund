@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Heading from "./utils/Heading";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import FundRaiseLanding from "./components/Fundraisers/FundRaiseLanding";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -16,9 +17,15 @@ export default function Home() {
         keywords="Funding,HopeFund,Raise Money,Fundraiser"
       />
       <div>
-        <Navbar open={open} setOpen={setOpen} activeItem={activeItem} setRoute={setRoute} route={route}/>
-        <Hero/>
+        <Navbar
+          open={open}
+          setOpen={setOpen}
+          activeItem={activeItem}
+          setRoute={setRoute}
+          route={route} />
+        <Hero />
       </div>
+      <FundRaiseLanding/>
     </>
   );
 }

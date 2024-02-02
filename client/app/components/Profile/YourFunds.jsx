@@ -11,7 +11,6 @@ const YourFunds = ({ user }) => {
   const [funds, setFunds] = useState([]);
   let fundFromState = useSelector((state) => state.fund.funds);
   const [getFunds, { isSuccess, error }] = useGetUserFundsMutation();
-  const dispatch = useDispatch()
 
   useEffect(() => {
     getFunds({ createdFunds: user.createdFunds });
@@ -41,60 +40,55 @@ const YourFunds = ({ user }) => {
             <hr className='mx-auto w-[80%]' />
           </div>
           <div className="w-full pl-6 800px:px-10">
-            <div className="flex items-center justify-around w-full mx-4 sm:ml-0">
-              <table className="w-full text-sm border-separate border-spacing-y-2">
-                <tbody >
-                  <tr className="tr-class">
-                    <td className="td-class"></td>
-                    <td className="td-class">Title</td>
-                    <td className="text-center max-w-[60px] td-class ">Amount Raised</td>
-                    <td className="text-center td-class">Verfication</td>
-                  </tr>
+            <div className="items-center justify-around w-full mx-4 sm:ml-0">
+              <div className="w-full text-sm border-separate border-spacing-y-2">
+                <div className='hidden mt-4 600px:block'>
+                  <div className='grid grid-cols-12'>
+                    <div className='col-span-3'></div>
+                    <div className='col-span-4'>Title</div>
+                    <div className='col-span-3'>Amount Raised</div>
+                    <div className='col-span-2'>Verification</div>
+                  </div>
+                </div>
+                <div>
                   {funds.map((fund) =>
                   (
-                    <tr className="tr-class" key={fund._id}>
-                      {console.log(fund)}
-                      <td className="td-class">
-                        <Image
-                          src={fund.coverImg.url || coverImg}
-                          alt=""
-                          width={60}
-                          height={60}
-                          className="w-[60px] mx-auto h-[60px] cursor-pointer border-[3px] border-[#9c3353]"
-                        />
-                      </td>
-                      <td className="td-class">{fund.fundraiserTitle}</td>
-                      <td className="max-w-[60px] text-center td-class">₹{fund.amountRaised}</td>
-                      <td className="text-center td-class">
-                        {fund.verified? 
-                        <span className="px-4 py-2 mx-auto text-xs antialiased font-semibold text-green-900 uppercase rounded-xl bg-green-600/50">Verified</span>
-                        :
-                        <span className="px-4 py-2 mx-auto text-xs antialiased font-semibold text-red-100 uppercase rounded-xl bg-red-600/50">Pending</span>
-                        }
-                      </td>
-                    </tr>
+                    <div className='my-auto'>
+                      <div className='grid grid-cols-12 mt-4' key={fund._id}>
+                        {console.log(fund)}
+                        <div className='col-span-3 mr-4 500px:mr-0'>
+                          <Image
+                            src={coverImg}
+                            alt=""
+                            width={80}
+                            height={80}
+                            className="w-[60px] min-w-[60px] mx-auto h-[60px] cursor-pointer border-[3px] border-[#9c3353]"
+                          />
+                        </div>
+                        <div className='col-span-9 my-auto ml-4 600px:ml-0'>
+                          <div className='block grid-cols-9 600px:grid'>
+                            <div className='col-span-4 mb-1'>{fund.fundraiserTitle}</div>
+                            {fund.verified ?
+                              <div className='col-span-3 mb-1'>₹{fund.amountRaised}</div>
+                              :
+                              <div className='hidden col-span-3 mb-1 600px:block'>₹{fund.amountRaised}</div>
+                            }
+
+                            <div className='col-span-2 mb-1'>
+                              {fund.verified ?
+                                <span className="hidden px-4 py-2 mx-auto text-xs antialiased font-semibold text-green-900 uppercase 600px:block rounded-xl bg-green-600/50">Verified</span>
+                                :
+                                <span className="px-4 py-1 mx-auto text-xs antialiased font-semibold text-red-100 uppercase 600px:py-2 rounded-xl bg-red-600/50">Pending</span>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   ))
                   }
-
-
-                  {/* <tr class="tr-class">
-                    <td class="td-class">Bilbo Baggins</td>
-                    <td class="td-class">bbaggins@mail.com</td>
-                    <td class="td-class">Thorin’s Company</td>
-                    <td class="td-class">
-                      <span class="float-right rounded-md bg-yellow-600/50 px-4 py-px text-xs font-semibold uppercase text-yellow-900 antialiased">Pending</span>
-                    </td>
-                  </tr>
-                  <tr class="tr-class">
-                    <td class="td-class suspended-text">Boromir of Gondor</td>
-                    <td class="td-class suspended-text">boromir@mail.com</td>
-                    <td class="td-class suspended-text">Fellowship of the Ring</td>
-                    <td class="td-class">
-                      <span class="float-right rounded-md bg-red-600/50 px-4 py-px text-xs font-semibold uppercase text-red-100 antialiased">Suspended</span>
-                    </td>
-                  </tr> */}
-                </tbody>
-              </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>

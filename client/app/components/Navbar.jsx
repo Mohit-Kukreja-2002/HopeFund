@@ -54,15 +54,15 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
         }
     }, [user, data, isSuccess, socialAuth]);
 
-    // if (typeof window !== "undefined") {
-    //     window.addEventListener("scroll", () => {
-    //         if (window.scrollY > 85) {
-    //             setActive(true);
-    //         } else {
-    //             setActive(false);
-    //         }
-    //     });
-    // }
+    if (typeof window !== "undefined") {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 85) {
+                setActive(true);
+            } else {
+                setActive(false);
+            }
+        });
+    }
 
     const handleClose = (e) => {
         if (e.target.id === "screen") {
@@ -75,7 +75,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
     return (
         <>
             <div className="relative w-full">
-                <div className={`h-[80px] z-[1000] w-full shadow-[0_0_30px_0_rgba(156,51,83,.2)]  
+                <div className={`h-[80px] bg-white z-[1000] w-full shadow-[0_0_30px_0_rgba(156,51,83,.3)]  
                 ${active ? "fixed top-0 left-0 transition duration-1000 scroll-smooth"
                         : ""
                     }`}

@@ -97,7 +97,7 @@ export const updateFundraiserAmount = catchAsyncError(
       console.log(fundraiser.amountRaised);
 
       if (data.amount) {
-        fundraiser.amountRaised = fundraiser.amountRaised+parseInt(data.amount);
+        fundraiser.amountRaised = fundraiser.amountRaised + parseInt(data.amount);
         fundraiser.numberOfDonators = 1 + fundraiser.numberOfDonators;
       }
       const updatedFundraiser = await fundraiser.save(); // Save the changes
@@ -135,7 +135,7 @@ export const getFundraisersByUser = catchAsyncError(
       // console.log(req.user.createdFunds);
       const donationArray = req.user.createdFunds;
       let resArray = [];
-      for(const id of donationArray){
+      for (const id of donationArray) {
         const fundraiserData = await fundRaiseModel.findById(id);
         resArray.push(fundraiserData);
       }
@@ -152,16 +152,15 @@ export const getFundraisersByUser = catchAsyncError(
 
 // Get All Fundraisers Sorted by endDatetoRaise in Ascending Order
 export const getAllFundraisersByUrgency = catchAsyncError(
-  async (req,res,next) => {
+  async (req, res, next) => {
     try {
-      const fundraisers = await fundRaiseModel.aggregate([
-        { $sort: { endDatetoRaise: 1 } }
-      ]);
-
+      const fundraisers = await fundRaiseModel.find({
+        verified: true,
+      }).sort({ endDatetoRaise: 1 });
       res.status(200).json({
         success: true,
         fundraisers,
-      });
+      })
     } catch (error) {
       return next(new ErrorHandler(error.message, 400));
     }
