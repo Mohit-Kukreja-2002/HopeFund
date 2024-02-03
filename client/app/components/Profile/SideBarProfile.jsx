@@ -47,19 +47,6 @@ const SideBarProfile = ({ user, active, avatar, setActive, logOutHandler, }) => 
                     Your Donations
                 </h5>
             </div>
-            {/* {user.role === "admin" && (
-        <Link
-          className={`w-full flex items-center px-3 py-4 cursor-pointer ${
-            active === 6 ? " bg-white" : "bg-transparent"
-          }`}
-          href={"/admin"}
-        >
-          <MdOutlineAdminPanelSettings size={20} className="text-black "  />
-          <h5 className="hidden pl-2 text-black 800px:block font-Poppins">
-            Admin Dashboard
-          </h5>
-        </Link>
-      )} */}
             <div
                 className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 4 ? " bg-white" : "bg-transparent"
                     }`}

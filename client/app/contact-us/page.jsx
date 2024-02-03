@@ -23,7 +23,9 @@ const contactUs = () => {
                 setRoute={setRoute}
                 route={route}
             />
-            <Contact/>
+            <div className='mt-[82px]'>
+                <Contact />
+            </div>
         </div>
     )
 }

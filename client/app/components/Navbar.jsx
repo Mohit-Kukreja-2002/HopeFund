@@ -14,9 +14,8 @@ import { useSelector } from "react-redux";
 import { useSocialAuthMutation } from "../../redux/features/auth/authApi";
 import { useSession } from "next-auth/react";
 
-
 const avatar = require("../../public/assets/user.png");
-const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
+const Navbar = ({ activeItem, setOpen, route, open, setRoute, page }) => {
     const [active, setActive] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
     const [userData, setUserData] = useState({});
@@ -27,13 +26,10 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
     const { } = useLogOutQuery(undefined, {
         skip: !logout ? true : false,
     });
-    // console.log(data);
-
+ 
     useEffect(() => {
         if (!user) {
             if (data) {
-                // console.log(data.user.name);
-                console.log(data);
                 socialAuth({
                     email: data.user.email,
                     name: data.user.name,
@@ -54,15 +50,6 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
         }
     }, [user, data, isSuccess, socialAuth]);
 
-    if (typeof window !== "undefined") {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 85) {
-                setActive(true);
-            } else {
-                setActive(false);
-            }
-        });
-    }
 
     const handleClose = (e) => {
         if (e.target.id === "screen") {
@@ -77,14 +64,15 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute ,page}) => {
             <div className="relative w-full">
                 <div className={`h-[80px] bg-white z-[1000] w-full shadow-[0_0_30px_0_rgba(156,51,83,.3)]  
                 ${active ? "fixed top-0 left-0 transition duration-1000 scroll-smooth"
-                        : ""
+                        : "fixed top-0 right-0 transition duration-1000 scroll-smooth"
                     }`}
                 >
                     <div className="w-[98%] h-full py-2 m-auto 800px:w-[98%] box-border">
                         <div className="flex items-center justify-between w-full h-full 800px:justify-normal">
                             <div className="self-center">
                                 <Link href={'/'}>
-                                    <Image className="m-0" alt='HopeFund-Logo' width={170} height={60}
+                                    <Image className="w-auto h-auto m-0" alt='HopeFund-Logo'
+                                        width={170} height={60}
                                         src={require("../../public/assets/logoo.png")} />
                                 </Link>
                             </div>

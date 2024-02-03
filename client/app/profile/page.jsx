@@ -33,7 +33,9 @@ const Page = (props) => {
                     setRoute={setRoute}
                     route={route}
                 />
-                <Profile user={user} active={active} setActive={setActive} />
+                <div className="mt-20">
+                    <Profile user={user} active={active} setActive={setActive} />
+                </div>
                 {/* <Footer /> */}
             </Protected>
         </div>

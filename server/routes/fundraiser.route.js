@@ -2,7 +2,7 @@ import express from "express";
 // import { isAutheticated } from "../middleware/auth.js";
 import { createFundraiserRequest, editFundraiser, getAllFundraisers, getAllFundraisersByUrgency, getFundraisersByUser, updateFundraiserAmount } from "../controllers/fundraiser.controller.js";
 import { isAutheticated } from "../middleware/auth.js";
-import { addBenefitterImg, addCoverImg, deleteBenefitterImg, deleteCoverImg, fundraiserBySearch, fundraiserByType } from "../services/fundraiser.services.js";
+import { addBenefitterImg, addCoverImg, deleteBenefitterImg, deleteCoverImg, fundraiserBySearch, fundraiserByType, getSingleFundraiser } from "../services/fundraiser.services.js";
 const fundraiserRouter=express.Router();
 
 fundraiserRouter.put("/edit-fund/:id",isAutheticated,editFundraiser);
@@ -10,6 +10,7 @@ fundraiserRouter.put("/update-fund-amount/:id",updateFundraiserAmount);
 
 fundraiserRouter.get('/getAllFunds',getAllFundraisers);
 fundraiserRouter.get('/getAllFundsByUrgency',getAllFundraisersByUrgency);
+fundraiserRouter.get("/get-fund/:id",getSingleFundraiser);
 // fundraiserRouter.get('/getAllFundsRandom',getAllFundraisersRandom);
 
 fundraiserRouter.post('/createFundraiser',isAutheticated,createFundraiserRequest);

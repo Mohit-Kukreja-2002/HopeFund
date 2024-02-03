@@ -129,14 +129,16 @@ const FundRaiseLanding = () => {
                 </div>
             }
 
-            <div className='relative flex flex-wrap justify-center mx-6 mb-4 700px:mx-4 1300px:mx-24 1500px:mx-36 1100px:mx-16 1000px:mx-2'>
+            <div className='flex flex-wrap justify-center mx-6 mb-4 700px:mx-4 1300px:mx-24 1500px:mx-36 1100px:mx-16 1000px:mx-2'>
                 {
-                    debouncedSearch.trim().length === 0 && funds.length === 0 && <Loader />
+                    debouncedSearch.trim().length === 0 
+                    && funds.length === 0 
+                    &&  <Loader height={60} />
                 }
                 {
                     debouncedSearch.trim().length === 0 && funds.length > 0
                     && funds.slice(0, cards).map((fund) => (
-                        <FundraiserCard id={fund._id} fund={fund} />
+                        <FundraiserCard key={fund._id} fund={fund} />
                     ))
                 }
                 {
@@ -147,13 +149,13 @@ const FundRaiseLanding = () => {
                 {
                     debouncedSearch.trim().length !== 0 && fundsBySearch.length > 0
                     && fundsOfSearch.slice(0, cards).map((fund) => (
-                        <FundraiserCard fund={fund} id={fund._id} />
+                        <FundraiserCard fund={fund} key={fund._id} />
                     ))
                 }
 
             </div>
 
-            <div className='flex items-center justify-center mb-36 underline font-bold text-[20px] text-[#9c3353]'>
+            <div className='flex items-center justify-center mb-4 underline font-bold text-[20px] text-[#9c3353]'>
                 <Link href={'/donate'} className='cursor-pointer' >
                     See more fundraisers
                 </Link>

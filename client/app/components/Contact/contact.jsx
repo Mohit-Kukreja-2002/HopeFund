@@ -13,7 +13,7 @@ const Contact = () => {
                     <p className='text-[#ffffff] text-xl space-y-2'>We are here to help you and answer any questions you may have. Here is how to reach us!</p>
                 </div>
                 <div className='flex items-center justify-center 1000px:pr-60'>
-                    <Image className='' width={328} height={215} src={"/assets/Contact.png"} alt="op" />
+                    <Image width={328} height={215} className='w-auto h-auto' src={"/assets/Contact.png"} alt="op" />
                 </div>
             </div>
             <br />

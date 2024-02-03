@@ -79,7 +79,7 @@ const Page2 = ({ values, user, setFieldValue }) => {
                     <span className='absolute top-[3px] right-[6px]'><IoMdArrowDropdown onClick={() => toggleBlockHidden()} /></span>
                 </span>
             </span>
-            <div ref={divref} className={`${values.benefitter === "" ? "block" : "hidden"} transition-all delay-200 ease-in-out text-[#282828] relative w-full min-w-[350px] max-w-[600px] min-h-[535px] z-[2000] rounded-md border-[1px_solid_#cecece] bg-white p-[6%_5%_3%] shadow-[0_0_10px_1px_#d3d3d3] top-[-35px] right-[0px]`}>
+            <div ref={divref} className={`${values.benefitter === "" ? "block" : "hidden"} transition-all delay-200 ease-in-out text-[#282828] relative w-full min-w-[350px] max-w-[500px] min-h-[535px] z-[2000] rounded-md border-[1px_solid_#cecece] bg-white p-[6%_5%_3%] shadow-[0_0_10px_1px_#d3d3d3] top-[-35px] right-[0px]`}>
                 <span className=' h-0 w-0 top-[-14px] border-solid border-l-transparent border-r-transparent absolute border-l-[12px] border-r-[12px] border-b-[14px] border-b-[#cecece] right-[18%] 500px:right-[27%]'></span>
                 <span className=' h-0 w-0 border-solid border-r-transparent border-l-transparent absolute border-l-[9px] border-r-[9px] border-b-[12px] border-b-[#fff] top-[-11.5px] right-[18%] 500px:right-[27%]'></span>
                 <ul className='absolute m-[0_0_10px] w-full p-[0_10px] top-[35px] left-0'>
@@ -141,7 +141,7 @@ const Page2 = ({ values, user, setFieldValue }) => {
                             </div>
                         </div>
                     </li>
-                    <li className='leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left mt-[90px] '>
+                    <li className='leading-[1.5rem] h-[30px] text-[rgba(0,0,0,0.87)] w-[100%] text-left mt-[70px] '>
                         <div className='p-[0_2rem] ml-[-0.75rem] mr-[-0.75rem] '>
                             <div className='cursor-pointer my-auto w-full bg-[#f8f8f8] text-[14px] border-[1px_solid_#cecece] shadow-[0_0_7px_rgba(31,156,51,.32549)] rounded'>
                                 <div className="my-auto p-[10px_10px_5px]" onClick={() => { toggleBlockHidden(); setFieldValue('benefitter', "NGO", false) }}>

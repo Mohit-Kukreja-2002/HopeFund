@@ -46,7 +46,7 @@ const Donate = () => {
     return (
         <div>
             {/* <div className='bottom-0 right-[70px] fixed z-[1000000]'> */}
-            <div className="relative flex justify-center mx-4">
+            <div className="relative flex justify-center mx-4 mb-4">
                 <input type="text"
                     onChange={(e) => { setSearch(e.target.value) }}
                     className="inline-block min-h-[auto] max-w-[600px] w-[90%] rounded-tl-full rounded-bl-full border-2 bg-transparent py-[0.32rem] px-5 leading-[2.15] outline-none border-[#9c3353] shadow-[0_0_30px_0_rgba(156,51,83,0.2)]"
@@ -63,7 +63,10 @@ const Donate = () => {
 
             <div className='relative flex flex-wrap justify-center mx-6 mb-4 700px:mx-4 1300px:mx-24 1500px:mx-36 1100px:mx-16 1000px:mx-2'>
                 {
-                    debouncedSearch.trim().length === 0 && funds.length === 0 && <Loader />
+                    debouncedSearch.trim().length === 0 && funds.length === 0 && 
+                    <div className='h-[40px]'>
+                        <Loader />
+                    </div>
                 }
                 {
                     debouncedSearch.trim().length === 0 && funds.length > 0

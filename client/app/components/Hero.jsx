@@ -49,7 +49,10 @@ const Hero = (props) => {
                             src={require("../../public/assets/bgImage.png")}
                             alt="Logo"
                             className="z-0 scale-[1.15] h-auto mr-10"
+                            priority
                             // width={500}
+                            // width={30}
+                            // height={30}
                         />
                     </div>
                 </div>

@@ -15,18 +15,16 @@ const DonatePage = () => {
                 description="HopeFund is a platform for helping people raise funds for any need from a community of rich hearted individuals."
                 keywords="Funding,HopeFund,Raise Money,Fundraiser"
             />
-            <div className='mb-4'>
-                <Navbar
-                    open={open}
-                    setOpen={setOpen}
-                    activeItem={activeItem}
-                    setRoute={setRoute}
-                    route={route}
-                />
+            <Navbar
+                open={open}
+                setOpen={setOpen}
+                activeItem={activeItem}
+                setRoute={setRoute}
+                route={route}
+            />
+            <div className='mt-24'>
+                <Donate />
             </div>
-            {/* <div className='w-full h-full'> */}
-                <Donate/>
-            {/* </div> */}
         </>
     )
 }

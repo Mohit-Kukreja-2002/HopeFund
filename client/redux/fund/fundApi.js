@@ -1,5 +1,5 @@
 import { apiSlice } from "../features/api/apiSlice";
-import { fundByType, fundBySearch, fundRegistration, userFundArray, allFundsByUrgency } from "./fundSlice";
+import { fundByType, fundBySearch, fundRegistration, userFundArray, allFundsByUrgency, fundById } from "./fundSlice";
 
 export const fundApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -56,7 +56,7 @@ export const fundApi = apiSlice.injectEndpoints({
             }),
         }),
         getUserFunds: builder.mutation({
-            query: (createdFunds) =>({
+            query: (createdFunds) => ({
                 url: 'getUserCreatedFunds',
                 method: "POST",
                 body: { createdFunds },
@@ -76,7 +76,7 @@ export const fundApi = apiSlice.injectEndpoints({
             }
         }),
         getFundsBySearch: builder.mutation({
-            query: (search) =>({
+            query: (search) => ({
                 url: 'fundraiserBySearch',
                 method: "POST",
                 body: { search },
@@ -96,7 +96,7 @@ export const fundApi = apiSlice.injectEndpoints({
             }
         }),
         getFundsByType: builder.mutation({
-            query: (type) =>({
+            query: (type) => ({
                 url: 'fundraiserByType',
                 method: "POST",
                 body: { type },
@@ -116,7 +116,7 @@ export const fundApi = apiSlice.injectEndpoints({
             }
         }),
         getAllFunds: builder.mutation({
-            query: () =>({
+            query: () => ({
                 url: 'getAllFundsByUrgency',
                 method: "GET",
                 credentials: "include",
@@ -134,6 +134,13 @@ export const fundApi = apiSlice.injectEndpoints({
                 }
             }
         }),
+        getFundDetails: builder.query({
+            query: (id) => ({
+                url: `get-fund/${id}`,
+                method: "GET",
+                credentials: "include",
+            }),
+        }),
     })
 })
 
@@ -147,4 +154,5 @@ export const {
     useGetFundsByTypeMutation,
     useGetFundsBySearchMutation,
     useGetAllFundsMutation,
+    useGetFundDetailsQuery,
 } = fundApi

@@ -9,12 +9,12 @@ import coverImg from '../../../public/assets/medical.jpg';
 
 const YourFunds = ({ user }) => {
   const [funds, setFunds] = useState([]);
-  let fundFromState = useSelector((state) => state.fund.funds);
+  const fundFromState = useSelector((state) => state.fund.funds);
   const [getFunds, { isSuccess, error }] = useGetUserFundsMutation();
 
   useEffect(() => {
     getFunds({ createdFunds: user.createdFunds });
-  }, [getFunds, user.createdFunds]);
+  }, [getFunds,user.createdFunds]);
 
   useEffect(() => {
     setFunds(fundFromState);
@@ -58,7 +58,7 @@ const YourFunds = ({ user }) => {
                         {console.log(fund)}
                         <div className='col-span-3 mr-4 500px:mr-0'>
                           <Image
-                            src={coverImg}
+                            src={fund.coverImg.url || coverImg}
                             alt=""
                             width={80}
                             height={80}
@@ -67,16 +67,16 @@ const YourFunds = ({ user }) => {
                         </div>
                         <div className='col-span-9 my-auto ml-4 600px:ml-0'>
                           <div className='block grid-cols-9 600px:grid'>
-                            <div className='col-span-4 mb-1'>{fund.fundraiserTitle}</div>
+                            <div className='col-span-4 mx-1 mb-1'>{fund.fundraiserTitle}</div>
                             {fund.verified ?
-                              <div className='col-span-3 mb-1'>₹{fund.amountRaised}</div>
+                              <div className='col-span-3 mx-1 mb-1'>₹{fund.amountRaised}</div>
                               :
-                              <div className='hidden col-span-3 mb-1 600px:block'>₹{fund.amountRaised}</div>
+                              <div className='hidden col-span-3 mx-1 mb-1 600px:block'>₹{fund.amountRaised}</div>
                             }
 
                             <div className='col-span-2 mb-1'>
                               {fund.verified ?
-                                <span className="hidden px-4 py-2 mx-auto text-xs antialiased font-semibold text-green-900 uppercase 600px:block rounded-xl bg-green-600/50">Verified</span>
+                                <span className="hidden px-4 py-2 mx-auto text-xs antialiased font-semibold text-green-900 uppercase 600px:inline-block rounded-xl bg-green-600/50">Verified</span>
                                 :
                                 <span className="px-4 py-1 mx-auto text-xs antialiased font-semibold text-red-100 uppercase 600px:py-2 rounded-xl bg-red-600/50">Pending</span>
                               }
@@ -92,6 +92,7 @@ const YourFunds = ({ user }) => {
             </div>
           </div>
         </div>
+        
       )
 
   )

@@ -1,9 +1,9 @@
 import React from "react";
 import "./Loader.css";
 
-const Loader = () => {
+const Loader = ({height}) => {
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className={`flex items-center justify-center ${height?`h-[${height}px]`:"h-screen"}`}>
       <div className="loader"></div>
     </div>
   );

@@ -42,11 +42,13 @@ const Page = (props) => {
                     route={route}
                     page={page}
                 />
-                <SetupFund
-                    page={page}
-                    setPage={setPage}
-                    setSuccess={setSuccess}
-                />
+                <div className="mt-20">
+                    <SetupFund
+                        page={page}
+                        setPage={setPage}
+                        setSuccess={setSuccess}
+                    />
+                </div>
                 {/* <Footer /> */}
             </Protected>
         </div>

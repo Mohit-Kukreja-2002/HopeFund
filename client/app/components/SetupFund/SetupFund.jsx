@@ -128,7 +128,7 @@ const SetupFund = ({ page, setPage,setSuccess}) => {
             <div className='fixed bottom-0 w-[100%] z-[1000] flex justify-center items-center'>
                 <div className='selection:max-h-[80px] max-w-[700px] w-[80%] min-w-[300px] p-[10px_30px] relative bg-[linear-gradient(0deg,#9c3353,#5f2747)] items-center'>
                     <Image
-                        className='left-[120px] absolute top-[4px] '
+                        className='left-[120px] h-auto w-auto absolute top-[4px] '
                         width={40}
                         height={40}
                         src={backImg}
