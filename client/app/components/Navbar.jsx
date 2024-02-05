@@ -23,10 +23,10 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute, page }) => {
     const { data } = useSession();
     const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
     const [logout, setLogout] = useState(false);
-    const { } = useLogOutQuery(undefined, {
+    const {a} = useLogOutQuery(undefined, {
         skip: !logout ? true : false,
     });
- 
+
     useEffect(() => {
         if (!user) {
             if (data) {
@@ -49,8 +49,7 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute, page }) => {
             setLogout(true);
         }
     }, [user, data, isSuccess, socialAuth]);
-
-
+    
     const handleClose = (e) => {
         if (e.target.id === "screen") {
             {
@@ -60,91 +59,80 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute, page }) => {
     };
 
     return (
-        <>
-            <div className="relative w-full">
-                <div className={`h-[80px] bg-white z-[1000] w-full shadow-[0_0_30px_0_rgba(156,51,83,.3)]  
+        <div className="relative w-full">
+            <div className={`h-[80px] bg-white z-[1000] w-full shadow-[0_0_30px_0_rgba(156,51,83,.3)]  
                 ${active ? "fixed top-0 left-0 transition duration-1000 scroll-smooth"
-                        : "fixed top-0 right-0 transition duration-1000 scroll-smooth"
-                    }`}
-                >
-                    <div className="w-[98%] h-full py-2 m-auto 800px:w-[98%] box-border">
-                        <div className="flex items-center justify-between w-full h-full 800px:justify-normal">
-                            <div className="self-center">
-                                <Link href={'/'}>
-                                    <Image className="w-auto h-auto m-0" alt='HopeFund-Logo'
-                                        width={170} height={60}
-                                        src={require("../../public/assets/logoo.png")} />
-                                </Link>
-                            </div>
-                            <div className="flex ml-auto align-middle 800px:ml-6">
-                                <NavItem activeItem={activeItem} isMobile={false} />
-                                {/* only for mobile */}
+                    : "fixed top-0 right-0 transition duration-1000 scroll-smooth"
+                }`}
+            >
+                <div className="w-[98%] h-full py-2 m-auto 800px:w-[98%] box-border">
+                    <div className="flex items-center justify-between w-full h-full 800px:justify-normal">
+                        <div className="self-center">
+                            <Link href={'/'}>
+                                <Image priority className="w-auto h-auto m-0" alt='HopeFund-Logo'
+                                    width={170} height={60}
+                                    src={require("../../public/assets/logoo.png")} />
+                            </Link>
+                        </div>
+                        <div className="flex ml-auto align-middle 800px:ml-6">
+                            <NavItem activeItem={activeItem} isMobile={false} />
+                            {/* only for mobile */}
 
-                            </div>
-                            <div className="flex ml-auto">
-                                {/* {userData ? (
-                                    <Link href={"/profile"}>
+                        </div>
+                        <div className="flex ml-auto">
+                            {activeItem === 5 ?
+                                <div className='flex items-center justify-center mr-7'>
+                                    <span className='text-[#56bc30] text-sm px-1'>Step {page} </span> of 4
+                                </div>
+                                :
+                                <div className="hidden 700px:flex justify-center items-center py-2
+                                     mr-5 w-[200px] h-[40px] rounded-3xl text-[20px] font-[500] bg-[#9c3353] hover:bg-[#b8355c] text-white">
+                                    <Link href={'/createFund'}>
+                                        Start a fundraiser
+                                    </Link>
+                                </div>
+
+                            }
+                            {
+                                user ? (
+                                    <Link href={'/profile'}>
                                         <Image
-                                            src={userData?.user.avatar ? userData.user.avatar.url : avatar}
-                                            alt=""
                                             width={30}
                                             height={30}
-                                            className="w-[30px] h-[30px] rounded-full cursor-pointer"
-                                            style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }}
-                                        />
+                                            src={user.avatar 
+                                                ? user.avatar.url 
+                                                : data ?  data.user.image : avatar}
+                                            className={`${activeItem === 4 ? "border-spacing-1 border-2 border-solid border-[#9c3353]" : ""} w-[40px] h-[40px] items-center text-center rounded-full mr-5 800px:mr-2 bg-[#f084a5] cursor-pointer block`}
+                                            alt="" />
                                     </Link>
-                                ) : ( */}
-                                {activeItem === 5 ?
-                                    <div className='flex items-center justify-center mr-7'>
-                                        <span className='text-[#56bc30] text-sm px-1'>Step {page} </span> of 4
-                                    </div>
-                                    :
-                                    <div className="hidden 700px:flex justify-center items-center py-2
-                                     mr-5 w-[200px] h-[40px] rounded-3xl text-[20px] font-[500] bg-[#9c3353] hover:bg-[#b8355c] text-white">
-                                        <Link href={'/createFund'}>
-                                            Start a fundraiser
-                                        </Link>
-                                    </div>
+                                ) : (
+                                    <HiOutlineUserCircle
+                                        size={45}
+                                        className="mr-5 800px:mr-2 text-[#9c3353] cursor-pointer block"
+                                        onClick={() => setOpen(true)}
+                                    />
 
-                                }
-                                {
-                                    user ? (
-                                        <Link href={'/profile'}>
-                                            <Image
-                                                width={30}
-                                                height={30}
-                                                src={user.avatar ? user.avatar.url : avatar}
-                                                className={`${activeItem === 4 ? "border-spacing-1 border-2 border-solid border-[#9c3353]" : ""} w-[40px] h-[40px] items-center text-center rounded-full mr-5 800px:mr-2 bg-[#f084a5] cursor-pointer block`}
-                                                alt="" />
-                                        </Link>
-                                    ) : (
-                                        <HiOutlineUserCircle
-                                            size={45}
-                                            className="mr-5 800px:mr-2 text-[#9c3353] cursor-pointer block"
-                                            onClick={() => setOpen(true)}
-                                        />
-
-                                    )
-                                }
-                                <HiOutlineMenuAlt3
-                                    size={45}
-                                    className="text-[#9c3353] cursor-pointer block 800px:hidden"
-                                    onClick={() => setOpenSidebar(true)}
-                                />
-                            </div>
+                                )
+                            }
+                            <HiOutlineMenuAlt3
+                                size={45}
+                                className="text-[#9c3353] cursor-pointer block 800px:hidden"
+                                onClick={() => setOpenSidebar(true)}
+                            />
                         </div>
                     </div>
+                </div>
 
-                    {/* mobile sidebar */}
-                    {openSidebar && (
-                        <div
-                            className="fixed w-full h-screen top-0 left-0 z-[99999]  bg-[#00000056]"
-                            onClick={handleClose}
-                            id="screen"
-                        >
-                            <div className="w-[70%] fixed z-[999999999] h-screen bg-white top-0 right-0">
-                                <NavItem activeItem={activeItem} isMobile={true} />
-                                {/* {userData?.user ? (
+                {/* mobile sidebar */}
+                {openSidebar && (
+                    <div
+                        className="fixed w-full h-screen top-0 left-0 z-[99999]  bg-[#00000056]"
+                        onClick={handleClose}
+                        id="screen"
+                    >
+                        <div className="w-[70%] fixed z-[999999999] h-screen bg-white top-0 right-0">
+                            <NavItem activeItem={activeItem} isMobile={true} />
+                            {/* {userData?.user ? (
                                     <Link href={"/profile"}>
                                         <Image
                                             src={userData?.user.avatar ? userData.user.avatar.url : avatar}
@@ -156,65 +144,64 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute, page }) => {
                                         />
                                     </Link>
                                 ) : ( */}
-                                {/* <HiOutlineUserCircle
+                            {/* <HiOutlineUserCircle
                                         size={25}
                                         className="hidden text-[#9c3353] cursor-pointer 800px:block"
                                         onClick={() => setOpen(true)}
                                     /> */}
-                                {/* )} */}
-                                <br />
-                                <br />
-                                <p className="text-[16px] font-bold px-2 pl-5 text-black">
-                                    Copyright © 2024 HopeFund
-                                </p>
-                            </div>
+                            {/* )} */}
+                            <br />
+                            <br />
+                            <p className="text-[16px] font-bold px-2 pl-5 text-black">
+                                Copyright © 2024 HopeFund
+                            </p>
                         </div>
-                    )}
-                </div>
-                {route === "Login" && (
-                    <>
-                        {open && (
-                            <CustomModal
-                                open={open}
-                                setOpen={setOpen}
-                                setRoute={setRoute}
-                                activeItem={activeItem}
-                                component={Login}
-                            // refetch={refetch}
-                            />
-                        )}
-                    </>
-                )}
-                {route === "Sign-Up" && (
-                    <>
-                        {open && (
-                            <CustomModal
-                                open={open}
-                                setOpen={setOpen}
-                                setRoute={setRoute}
-                                activeItem={activeItem}
-                                component={SignUp}
-                            // refetch={refetch}
-                            />
-                        )}
-                    </>
-                )}
-                {route === "Verification" && (
-                    <>
-                        {open && (
-                            <CustomModal
-                                open={open}
-                                setOpen={setOpen}
-                                setRoute={setRoute}
-                                activeItem={activeItem}
-                                component={Verification}
-                            // refetch={refetch}
-                            />
-                        )}
-                    </>
+                    </div>
                 )}
             </div>
-        </>
+            {route === "Login" && (
+                <>
+                    {open && (
+                        <CustomModal
+                            open={open}
+                            setOpen={setOpen}
+                            setRoute={setRoute}
+                            activeItem={activeItem}
+                            component={Login}
+                        // refetch={refetch}
+                        />
+                    )}
+                </>
+            )}
+            {route === "Sign-Up" && (
+                <>
+                    {open && (
+                        <CustomModal
+                            open={open}
+                            setOpen={setOpen}
+                            setRoute={setRoute}
+                            activeItem={activeItem}
+                            component={SignUp}
+                        // refetch={refetch}
+                        />
+                    )}
+                </>
+            )}
+            {route === "Verification" && (
+                <>
+                    {open && (
+                        <CustomModal
+                            open={open}
+                            setOpen={setOpen}
+                            setRoute={setRoute}
+                            activeItem={activeItem}
+                            component={Verification}
+                        // refetch={refetch}
+                        />
+                    )}
+                </>
+            )}
+        </div>
     );
 };
 

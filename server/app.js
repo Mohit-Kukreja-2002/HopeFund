@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import userRouter from "./routes/user.route.js";
 import fundraiserRouter from "./routes/fundraiser.route.js";
 import contactRouter from "./routes/contact.route.js";
+import paymentRouter from "./routes/payment.route.js";
 
 
 dotenv.config()
@@ -25,7 +26,7 @@ app.use(cors({
 }));
 
 // routes
-app.use("/api/v1/",userRouter,fundraiserRouter,contactRouter);
+app.use("/api/v1/",userRouter,fundraiserRouter,contactRouter,paymentRouter);
 
 // testing api
 app.get("/test",(req,res,next)=>{

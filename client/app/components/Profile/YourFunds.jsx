@@ -10,7 +10,7 @@ import coverImg from '../../../public/assets/medical.jpg';
 const YourFunds = ({ user }) => {
   const [funds, setFunds] = useState([]);
   const fundFromState = useSelector((state) => state.fund.funds);
-  const [getFunds, { isSuccess, error }] = useGetUserFundsMutation();
+  const [getFunds, { isSuccess, error}] = useGetUserFundsMutation();
 
   useEffect(() => {
     getFunds({ createdFunds: user.createdFunds });
@@ -53,9 +53,9 @@ const YourFunds = ({ user }) => {
                 <div>
                   {funds.map((fund) =>
                   (
-                    <div className='my-auto'>
-                      <div className='grid grid-cols-12 mt-4' key={fund._id}>
-                        {console.log(fund)}
+                    <div className='my-auto' key={fund._id}>
+                      <div className='grid grid-cols-12 mt-4'>
+                        {/* {console.log(fund)} */}
                         <div className='col-span-3 mr-4 500px:mr-0'>
                           <Image
                             src={fund.coverImg.url || coverImg}

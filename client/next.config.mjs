@@ -1,8 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    compiler: {
+        // Enables the styled-components SWC transform
+        styledComponents: true
+    },
     images: {
-        domains: ['res.cloudinary.com', 'randomuser.me','lh3.googleusercontent.com'],
-    }
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'randomuser.me',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'lh3.googleusercontent.com',
+                pathname: '**',
+            },
+        ],
+    },
     // experimental: {
     //     reactRoot: true,
     //     suppressHydrationWarning: true,

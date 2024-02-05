@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: "",
   user: "",
+  redirection: false,
 };
 
 const authSlice = createSlice({
@@ -20,9 +21,12 @@ const authSlice = createSlice({
       state.token = "";
       state.user = "";
     },
+    userRedirection: (state,action) => {
+      state.redirection = action.payload.redirection;
+    },
   },
 });
 
-export const { userRegistration, userLoggedIn, userLoggedOut } = authSlice.actions;
+export const { userRegistration, userLoggedIn, userLoggedOut, userRedirection} = authSlice.actions;
 
 export default authSlice.reducer;

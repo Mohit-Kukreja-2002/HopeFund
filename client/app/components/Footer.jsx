@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="mb-2 md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <Link href={'/'}>
-                            <Image className="w-auto h-auto m-0" alt='HopeFund-Logo' width={170} height={60}
+                            <Image priority className="w-auto h-auto m-0" alt='HopeFund-Logo' width={170} height={60}
                                 src={require("../../public/assets/logoo.png")} />
                         </Link>
                     </div>

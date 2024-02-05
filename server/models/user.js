@@ -28,6 +28,10 @@ const UserSchema = new Schema({
                 type: String,
                 required: true
             },
+            fundraiserImg: {
+                type: String,
+                // required: true
+            },
             amount: {
                 type: Number,
                 required: true

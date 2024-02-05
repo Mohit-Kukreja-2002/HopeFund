@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { AiFillMail } from 'react-icons/ai'
 import { HiLocationMarker } from 'react-icons/hi'
 const Contact = () => {
+    const [isClient, setClient]=useState(false)
+    useEffect(()=>{
+        setClient(true);
+    })
     return (
         <div className="z-0 mt-[2px]">
             <div className="1000px:flex items-center justify-center font-sans bg-contact bg-[#9c3353] pt-32 pb-20">
@@ -45,20 +49,20 @@ const Contact = () => {
                 </div>
                 <br />
             </div>
-            <div class="w-full px-5 py-10 max-w-[1200px] m-auto">
-                <iframe class="border-0 w-full" src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3491.1882199452075!2d77.09905287835032!3d28.95214131229869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390dadd1ccaa6249%3A0x79dedc8ba40cf3ac!2sIndian%20Institute%20Of%20Information%20Technology%20Sonepat!5e0!3m2!1sen!2sin!4v1681456888051!5m2!1sen!2sin"} width={1000} height={450} allowFullScreen={""} loading={"lazy"} referrerpolicy={"no-referrer-when-downgrade"}></iframe>
+            <div className="w-full px-5 py-10 max-w-[1200px] m-auto">
+                <iframe className="w-full border-0" src={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3491.1882199452075!2d77.09905287835032!3d28.95214131229869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390dadd1ccaa6249%3A0x79dedc8ba40cf3ac!2sIndian%20Institute%20Of%20Information%20Technology%20Sonepat!5e0!3m2!1sen!2sin!4v1681456888051!5m2!1sen!2sin"} width={1000} height={450} allowFullScreen={""} loading={"lazy"} referrerPolicy={"no-referrer-when-downgrade"}></iframe>
             </div>
             <div className='w-full px-5 py-10 max-w-[1200px] m-auto'>
                 <h1 className='mb-10 text-2xl'>Let us know what you think</h1>
                 <form action="">
-                    <div class="grid md:grid-cols-2 md:gap-6">
-                        <div class="relative z-0 w-full 1000px:w-5/6 mb-6 group">
+                    <div className="grid md:grid-cols-2 md:gap-6">
+                        <div className="relative z-0 w-full mb-6 1000px:w-5/6 group">
                             <input type="text" name="name" id="name" className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                             <label htmlFor="name" className="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
                         </div>
-                        <div class="relative z-0 w-full 1000px:w-5/6 mb-6 group">
+                        <div className="relative z-0 w-full mb-6 1000px:w-5/6 group">
                             <input type="mail" name="mail" id="mail" className="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none 600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label hmtlFor="mail" className="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                            <label htmlFor="mail" className="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                         </div>
                     </div>
                     <div>

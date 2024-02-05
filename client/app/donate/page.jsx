@@ -8,8 +8,12 @@ const DonatePage = () => {
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(1);
     const [route, setRoute] = useState("Login");
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
     return (
-        <>
+        isClient && <>
             <Heading
                 title="Donate - HopeFund"
                 description="HopeFund is a platform for helping people raise funds for any need from a community of rich hearted individuals."

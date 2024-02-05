@@ -26,7 +26,8 @@ const FundraiserCard = ({fund}) => {
                     <div className='flex px-3'>
                         <div>
                             <CircularProgressBar
-                                percentage={Math.ceil(100 * (fund.amountRaised / fund.amountRequired)) <= 100
+                                percentage={
+                                    (Math.ceil(100 * (fund.amountRaised / fund.amountRequired)) <= 100)
                                     ? Math.ceil(100 * (fund.amountRaised / fund.amountRequired))
                                     : 100}
                             />

@@ -39,6 +39,14 @@ export const userApi = apiSlice.injectEndpoints({
         credentials: "include",
       }),
     }),
+    getUserImg: builder.query({
+      query: (email) => ({
+        url: "get-user-pic",
+        method: "POST",
+        body: {email},
+        credentials: "include",
+      }),
+    }),
     updateUserRole: builder.mutation({
       query: ({ email, role }) => ({
         url: "update-user",
@@ -67,6 +75,7 @@ export const userApi = apiSlice.injectEndpoints({
 
 export const {
   useUpdateAvatarMutation,
+  useGetUserImgQuery,
   useEditProfileMutation,
   useUpdatePasswordMutation,
   useGetAllUsersQuery,

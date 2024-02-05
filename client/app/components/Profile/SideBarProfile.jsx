@@ -7,8 +7,10 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { BsFillCollectionFill } from "react-icons/bs";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
-const SideBarProfile = ({ user, active, avatar, setActive, logOutHandler, }) => {
+const SideBarProfile = ({ user, active, setActive, logOutHandler, }) => {
+    const {data} = useSession();
     return (
         <div className="w-full">
             <div
@@ -18,7 +20,9 @@ const SideBarProfile = ({ user, active, avatar, setActive, logOutHandler, }) => 
             >
                 <Image
                     src={
-                        user.avatar || avatar ? user.avatar.url || avatar : avatarDefault
+                        user.avatar 
+                        ? user.avatar.url :
+                        data ? data.user.image : avatarDefault
                     }
                     alt=""
                     width={20}

@@ -7,10 +7,9 @@ import { useLogOutQuery } from "../../../redux/features/auth/authApi.js";
 
 import ProfileInfo from "./ProfileInfo";
 import YourFunds from "./YourFunds.jsx";
-
+import YourDonations from "./YourDonations.jsx";
 
 const Profile = ({ user, active, setActive }) => {
-  const [avatar, setAvatar] = useState(null);
 
   const [logout, setLogout] = useState(false);
   const { } = useLogOutQuery(undefined, {
@@ -22,7 +21,6 @@ const Profile = ({ user, active, setActive }) => {
     signOut();
   };
 
-
   return (
     <div className="w-[85%] flex mx-auto mb-4">
       <div
@@ -32,7 +30,6 @@ const Profile = ({ user, active, setActive }) => {
         <SideBarProfile
           user={user}
           active={active}
-          avatar={avatar}
           setActive={setActive}
           logOutHandler={logOutHandler}
         />
@@ -40,13 +37,19 @@ const Profile = ({ user, active, setActive }) => {
       <div className="w-full 800px:ml-[305px] 900px:ml-[320px] ml-[60px]">
         {active === 1 && (
           <div className="w-full h-full bg-transparent mt-[80px]">
-            <ProfileInfo avatar={avatar} user={user} />
+            <ProfileInfo user={user} />
           </div>
         )}
 
         {active === 2 && (
           <div className="w-full h-full bg-transparent mt-[80px]">
             <YourFunds user={user} />
+          </div>
+        )}
+
+        {active === 3 && (
+          <div className="w-full h-full bg-transparent mt-[80px]">
+            <YourDonations user={user} />
           </div>
         )}
       </div>

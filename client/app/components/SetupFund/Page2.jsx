@@ -10,8 +10,10 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import Image from 'next/image';
 import { useDeleteBenfitterImgMutation, useAddBenfitterImgMutation } from '../../../redux/fund/fundApi';
 import toast from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
 
 const Page2 = ({ values, user, setFieldValue }) => {
+    const {data} = useSession();
     const [deleteBenefitter, { isSuccess, error: isError }] = useDeleteBenfitterImgMutation();
     const [addBenefitter, { isSuccess: success, error }] = useAddBenfitterImgMutation();
     if (values.benefitter == 'myself') {
@@ -165,7 +167,7 @@ const Page2 = ({ values, user, setFieldValue }) => {
                     <div className='flex justify-center px-1 py-3 bg-slate-200'>
                         <div className="relative">
                             <Image
-                                src={values.benefitterImg.url || avatarIcon}
+                                src={values.benefitterImg.url || data?.user.image || avatarIcon}
                                 alt=""
                                 width={120}
                                 height={120}

@@ -9,21 +9,7 @@ import { useRouter } from "next/navigation";
 // import img1 from '../../../public/assests/banner-img-1.png'
 
 
-const Hero = (props) => {
-    const { data, isLoading } = useState(null);
-    const [search, setSearch] = useState("");
-    const router = useRouter()
-
-
-    // const handleSearch = () => {
-    //     if (search === "") {
-    //         return
-    //     } else {
-    //         router.push(`/courses?title=${search}`);
-    //     }
-    // }
-
-
+const Hero = () => {
     return (
         <>
             <div className="flex flex-col-reverse w-full overflow-hidden 1000px:flex-row">

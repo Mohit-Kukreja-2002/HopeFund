@@ -19,7 +19,7 @@ export const fundApi = apiSlice.injectEndpoints({
                         })
                     );
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                 }
             }
         }),
@@ -71,7 +71,7 @@ export const fundApi = apiSlice.injectEndpoints({
                         })
                     );
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                 }
             }
         }),
@@ -91,7 +91,7 @@ export const fundApi = apiSlice.injectEndpoints({
                         })
                     );
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                 }
             }
         }),
@@ -111,7 +111,7 @@ export const fundApi = apiSlice.injectEndpoints({
                         })
                     );
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                 }
             }
         }),
@@ -130,7 +130,7 @@ export const fundApi = apiSlice.injectEndpoints({
                         })
                     );
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                 }
             }
         }),

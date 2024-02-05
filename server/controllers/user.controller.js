@@ -277,7 +277,6 @@ export const updateUserFundIdArray = catchAsyncError(
             const userId = req.user?._id;
             const user = await User.findById(userId);
 
-            
             user.createdFunds.push(id);
             await user?.save();
             await redis.set(userId, JSON.stringify(user));
@@ -358,6 +357,32 @@ export const getUser = catchAsyncError(
                     success: false,
                     "error": "not found"
                 })
+            }
+        } catch (error) {
+            return next(new ErrorHandler(error.message, 400));
+        }
+    }
+)
+
+export const getUserPic = catchAsyncError(
+    async (req, res, next) => {
+        try {
+            const { email } = req.body;
+            // console.log(email)
+            let user = await User.findOne({email});
+            if (user) {
+                let userPic;
+                if(user.avatar)userPic = user.avatar.url;
+                res.status(200).json({
+                    success: true,
+                    userPic,
+                });
+            }else{
+                let userPic = null;
+                res.status(200).json({
+                    success: false,
+                    userPic,
+                });
             }
         } catch (error) {
             return next(new ErrorHandler(error.message, 400));

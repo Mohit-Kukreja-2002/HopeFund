@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 // import { styles } from "../../../app/styles/style";
 import React, { FC, useEffect, useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
@@ -9,13 +10,15 @@ import { toast } from "react-hot-toast";
 import { useEditProfileMutation, useUpdateAvatarMutation } from "@/redux/user/userApi";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 
-const ProfileInfo = ({ avatar, user }) => {
+const ProfileInfo = ({ user }) => {
+  const { data } = useSession();
+
   const [name, setName] = useState(user && user.name);
   const [updateAvatar, { isSuccess, error }] = useUpdateAvatarMutation();
   const [editProfile, { isSuccess: success, error: updateError }] =
     useEditProfileMutation();
   const [loadUser, setLoadUser] = useState(false);
-  const {} = useLoadUserQuery(undefined, { skip: loadUser ? false : true });
+  const { } = useLoadUserQuery(undefined, { skip: loadUser ? false : true });
 
   const imageHandler = async (e) => {
     const fileReader = new FileReader();
@@ -36,11 +39,11 @@ const ProfileInfo = ({ avatar, user }) => {
     if (error || updateError) {
       console.log(error);
     }
-    if(success){
+    if (success) {
       toast.success("Profile updated successfully!");
       setLoadUser(true);
     }
-  }, [isSuccess, error,success,updateError]);
+  }, [isSuccess, error, success, updateError]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +59,12 @@ const ProfileInfo = ({ avatar, user }) => {
       <div className="flex justify-center w-full">
         <div className="relative">
           <Image
-            src={user.avatar || avatar ? user.avatar.url || avatar : avatarIcon}
+            src={user.avatar
+              ? user.avatar.url
+              : data ?
+                data.user.image
+                : avatarIcon
+            }
             alt=""
             width={120}
             height={120}

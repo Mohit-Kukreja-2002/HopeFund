@@ -83,9 +83,9 @@ const SetupFund = ({ page, setPage,setSuccess}) => {
             let res=await createFund(data);
             if(res.data.success){
                 let res1=await updateFundArray(res.data.fundraise._id);
-                console.log(res1);
+                // console.log(res1);
             }
-            console.log(res);
+            // console.log(res);
         }
     });
 

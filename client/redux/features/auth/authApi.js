@@ -21,7 +21,7 @@ export const authApi = apiSlice.injectEndpoints({
             })
           );
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),
@@ -55,7 +55,7 @@ export const authApi = apiSlice.injectEndpoints({
             })
           );
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),
@@ -80,7 +80,7 @@ export const authApi = apiSlice.injectEndpoints({
             })
           );
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),
@@ -96,7 +96,7 @@ export const authApi = apiSlice.injectEndpoints({
             userLoggedOut()
           );
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
     }),

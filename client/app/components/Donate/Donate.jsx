@@ -25,7 +25,7 @@ const Donate = () => {
     const debouncedSearch = useDebounce(search, 500);
 
     useEffect(() => {
-        console.log("getting funds..")
+        // console.log("getting funds..")
         getFunds();
     }, [getFunds]);
 
@@ -71,7 +71,7 @@ const Donate = () => {
                 {
                     debouncedSearch.trim().length === 0 && funds.length > 0
                     && funds.map((fund) => (
-                        <FundraiserCard id={fund._id} fund={fund} />
+                        <FundraiserCard key={fund._id} fund={fund} />
                     ))
                 }
                 {
@@ -82,7 +82,7 @@ const Donate = () => {
                 {
                     debouncedSearch.trim().length !== 0 && fundsBySearch.length > 0
                     && fundsOfSearch.map((fund) => (
-                        <FundraiserCard fund={fund} id={fund._id} />
+                        <FundraiserCard fund={fund} key={fund._id} />
                     ))
                 }
             </div>
