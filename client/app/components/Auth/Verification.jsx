@@ -1,10 +1,10 @@
-// import { styles } from "@/app/styles/style";
-// import { useActivationMutation } from "@/redux/features/auth/authApi";
 import { useActivationMutation } from "../../../redux/features/auth/authApi";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { useSelector } from "react-redux";
+// import { styles } from "@/app/styles/style";
+// import { useActivationMutation } from "@/redux/features/auth/authApi";
 
 const Verification = ({ setRoute }) => {
     const { token } = useSelector((state) => state.auth);

@@ -1,5 +1,5 @@
 import { apiSlice } from "../features/api/apiSlice";
-import { fundByType, fundBySearch, fundRegistration, userFundArray, allFundsByUrgency, fundById } from "./fundSlice";
+import { fundByType, fundBySearch, fundRegistration, userFundArray, allFundsByUrgency, fundById, userDonationArray } from "./fundSlice";
 
 export const fundApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -55,25 +55,19 @@ export const fundApi = apiSlice.injectEndpoints({
                 credentials: "include",
             }),
         }),
-        getUserFunds: builder.mutation({
-            query: (createdFunds) => ({
+        getUserFunds: builder.query({
+            query: () => ({
                 url: 'getUserCreatedFunds',
-                method: "POST",
-                body: { createdFunds },
+                method: "GET",
                 credentials: "include",
             }),
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                try {
-                    const result = await queryFulfilled;
-                    dispatch(
-                        userFundArray({
-                            funds: result.data.resArray,
-                        })
-                    );
-                } catch (error) {
-                    // console.log(error);
-                }
-            }
+        }),
+        getUserDonations: builder.query({
+            query: () => ({
+                url: 'getUserDonatedFunds',
+                method: "GET",
+                credentials: "include",
+            }),
         }),
         getFundsBySearch: builder.mutation({
             query: (search) => ({
@@ -150,9 +144,12 @@ export const {
     useDeletCoverImgMutation,
     useAddBenfitterImgMutation,
     useAddCoverImgMutation,
-    useGetUserFundsMutation,
+    // useGetUserFundsMutation,
     useGetFundsByTypeMutation,
     useGetFundsBySearchMutation,
     useGetAllFundsMutation,
     useGetFundDetailsQuery,
+    // useGetUserDonationsMutation,
+    useGetUserDonationsQuery,
+    useGetUserFundsQuery,
 } = fundApi

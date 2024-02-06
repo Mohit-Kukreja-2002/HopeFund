@@ -8,14 +8,14 @@ export const contactController = catchAsyncError(
         }
         try {
             const data = req.body;
+            // console.log(data)
             const contactUs = await contactModel.create(data);
             res.status(201).json({
                 success: true,
-                contactUs
+                // contactUs
             });
         }
         catch (error) {
-            // console.error(error.message);
             return next(new ErrorHandler(error.message,400));
         }
     }

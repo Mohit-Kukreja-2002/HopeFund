@@ -7,8 +7,8 @@ import avatarIcon from "../../../public/assets/user.png";
 // import {useEditProfileMutation,useUpdateAvatarMutation} from "@/redux/features/user/userApi";
 // import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import { toast } from "react-hot-toast";
-import { useEditProfileMutation, useUpdateAvatarMutation } from "@/redux/user/userApi";
-import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import { useEditProfileMutation, useUpdateAvatarMutation } from "../../../redux/user/userApi";
+import { useLoadUserQuery } from "../../../redux/features/api/apiSlice";
 
 const ProfileInfo = ({ user }) => {
   const { data } = useSession();
@@ -88,7 +88,7 @@ const ProfileInfo = ({ user }) => {
       <br />
       <div className="w-full pl-6 800px:pl-10">
         <form onSubmit={handleSubmit}>
-          <div className="800px:w-[50%] m-auto block pb-4">
+          <div className="800px:w-[50%] 800px:min-w-[350px] m-auto block pb-4">
             <div className="w-[100%]">
               <label className="block pb-2">Full Name</label>
               <input

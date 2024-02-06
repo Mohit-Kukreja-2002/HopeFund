@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { userRedirection } from "@/redux/features/auth/authSlice";
+import { userRedirection } from "../../redux/features/auth/authSlice";
 import { redirect } from "next/navigation";
 import UserAuth from "./userAuth";
 

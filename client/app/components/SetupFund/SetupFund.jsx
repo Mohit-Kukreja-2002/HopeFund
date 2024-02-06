@@ -9,9 +9,10 @@ import Link from "next/link";
 import * as Yup from "yup";
 import { useSelector } from 'react-redux'
 import { useFormik } from "formik";
-import { useCreateFundRaiserMutation } from "@/redux/fund/fundApi";
+import { useCreateFundRaiserMutation } from "../../../redux/fund/fundApi";
 import toast from "react-hot-toast";
-import { useUpdateFundIDArrayMutation } from "@/redux/user/userApi";
+import { useUpdateFundIDArrayMutation } from "../../../redux/user/userApi";
+import { initializeApp } from "../../../redux/store";
 
 const schema = Yup.object().shape({
     // Page 1
@@ -51,6 +52,9 @@ const schema = Yup.object().shape({
 
 
 const SetupFund = ({ page, setPage,setSuccess}) => {
+    useEffect(()=>{
+        initializeApp();
+    },[page])
     const { user } = useSelector((state) => state.auth);
     const backImg = require('../../../public/assets/fixedbottom.png')
     const [createFund,{isSuccess, error}] = useCreateFundRaiserMutation();
@@ -79,6 +83,7 @@ const SetupFund = ({ page, setPage,setSuccess}) => {
         },
         validationSchema: schema,
         onSubmit : async (value) => {
+            initializeApp();
             const data = value;
             let res=await createFund(data);
             if(res.data.success){

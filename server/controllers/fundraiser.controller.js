@@ -150,6 +150,33 @@ export const getFundraisersByUser = catchAsyncError(
     }
   }
 );
+export const getDonatedFundsByUser = catchAsyncError(
+  async (req, res, next) => {
+    try {
+      // console.log(req);
+      // console.log(req.user.donationsArray);
+      const donationArray = req.user.donationsArray;
+      let resArray = [];
+      for (let fund of donationArray) {
+        const fundraiserData = await fundRaiseModel.findById(fund.fundraiser);
+        resArray.push({
+          title: fundraiserData.fundraiserTitle,
+          id:fundraiserData._id,
+          coverImg:fundraiserData.coverImg,
+          amount:fund.amount,
+          date:fund.date
+        });
+      }
+      // console.log(resArray);
+      res.status(200).json({
+        success: true,
+        resArray,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
+    }
+  }
+);
 
 // Get All Fundraisers Sorted by endDatetoRaise in Ascending Order
 export const getAllFundraisersByUrgency = catchAsyncError(

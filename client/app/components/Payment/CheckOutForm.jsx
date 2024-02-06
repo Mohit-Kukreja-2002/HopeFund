@@ -1,7 +1,7 @@
 // import { styles } from "@/app/styles/style";
 // import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 // import { useCreateOrderMutation } from "@/redux/features/orders/ordersApi";
-import { useMakePaymentMutation } from "@/redux/payment/paymentApi";
+import { useMakePaymentMutation } from "../../../redux/payment/paymentApi";
 import { LinkAuthenticationElement, PaymentElement, useElements, useStripe, } from "@stripe/react-stripe-js";
 import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -58,7 +58,7 @@ const CheckOutForm = ({ fund, amount }) => {
                 toast.error(errorMessage.data.message);
             }
         }
-    }, [paymentData, error])
+    }, [paymentData, error,fund._id])
 
 
     return (

@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import CircularProgressBar from "@/app/utils/CircularProgressBar";
-import { useGetUserImgQuery } from "@/redux/user/userApi";
+import CircularProgressBar from "../../utils/CircularProgressBar";
+import { useGetUserImgQuery } from "../../../redux/user/userApi";
 import Loader from "../Loader/loader";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { useCreatePaymentIntentMutation } from "@/redux/payment/paymentApi";
+import { useCreatePaymentIntentMutation } from "../../../redux/payment/paymentApi";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckOutForm from "../Payment/CheckOutForm";
+import { initializeApp } from "../../../redux/store";
 
 const coverImage = require('../../../public/assets/medical.jpg');
 const userImage = require('../../../public/assets/user.png');
@@ -30,6 +31,7 @@ const FundraiserDetail = ({ fund, stripePromise }) => {
   const [open1, setOpen1] = useState(false);
 
   const handleOrder = (e) => {
+    initializeApp();
     setOpen(true);
   };
   const handleOrder1 = async (e) => {
@@ -126,7 +128,7 @@ const FundraiserDetail = ({ fund, stripePromise }) => {
                         priority
                         alt=""
                         className="w-12 h-12 rounded-full bg-[#9c3353]"
-                        src={data?.benefitterImg?.url || userImage}
+                        src={fund?.benefitterCreatorRelation === "myself" ? data?.userPic || userImage : (fund?.benefitterImg?.url || userImage)}
                         width={100} height={100} />
                       <ul className="ml-4">
                         <li className="text-sm mb-1 text-[#5d5d5d]">This fundraiser will benefit</li>

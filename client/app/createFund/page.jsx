@@ -3,11 +3,11 @@ import React, { FC, useEffect, useState } from "react";
 import Protected from "../hooks/useProtected";
 import Heading from "../utils/Heading";
 import Navbar from "../components/Navbar";
-import Profile from "../components/Profile/Profile.jsx";
-import { useSelector } from "react-redux";
+// import Profile from "../components/Profile/Profile.jsx";
+// import { useSelector } from "react-redux";
 import SetupFund from "../components/SetupFund/SetupFund";
 import { redirect } from "next/navigation";
-import { useUpdateFundIDArrayMutation } from "@/redux/user/userApi";
+// import { useUpdateFundIDArrayMutation } from "@/redux/user/userApi";
 // import Footer from "../components/Footer";
 
 

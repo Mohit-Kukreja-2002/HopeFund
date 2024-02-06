@@ -8,8 +8,10 @@ import { useLogOutQuery } from "../../../redux/features/auth/authApi.js";
 import ProfileInfo from "./ProfileInfo";
 import YourFunds from "./YourFunds.jsx";
 import YourDonations from "./YourDonations.jsx";
+import { initializeApp } from "../../../redux/store";
 
 const Profile = ({ user, active, setActive }) => {
+  // initializeApp();
 
   const [logout, setLogout] = useState(false);
   const { } = useLogOutQuery(undefined, {
@@ -20,6 +22,10 @@ const Profile = ({ user, active, setActive }) => {
     setLogout(true);
     signOut();
   };
+
+  useEffect(()=>{
+    initializeApp();
+  },[active])
 
   return (
     <div className="w-[85%] flex mx-auto mb-4">
@@ -53,22 +59,6 @@ const Profile = ({ user, active, setActive }) => {
           </div>
         )}
       </div>
-
-      {/* {active === 3 && (
-        <div className="w-full pl-7 px-2 800px:px-10 800px:pl-8 mt-[80px]">
-          <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[35px] mb-12 border-0">
-            {courses &&
-              courses.map((item, index) => (
-                <CourseCard item={item} key={index} isProfile={true} />
-              ))}
-          </div>
-          {courses.length === 0 && (
-            <h1 className="text-center text-[18px] font-Poppins text-black">
-              You don&apos;t have any purchased courses!
-            </h1>
-          )}
-        </div>
-      )} */}
     </div>
   );
 };

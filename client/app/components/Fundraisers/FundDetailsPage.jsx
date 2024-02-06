@@ -1,19 +1,20 @@
-import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
-import { useGetFundDetailsQuery } from "@/redux/fund/fundApi";
+import { useGetFundDetailsQuery } from '../../../redux/fund/fundApi';
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Loader from "../Loader/loader";
-import Heading from "@/app/utils/Heading";
+import Heading from "../../utils/Heading";
 import FundraiserDetail from "./FundraiserDetail";
-import { useCreatePaymentIntentMutation, useGetStripePublishablekeyQuery } from "@/redux/payment/paymentApi";
+import { useCreatePaymentIntentMutation, useGetStripePublishablekeyQuery } from "../../../redux/payment/paymentApi";
 import { loadStripe } from "@stripe/stripe-js";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { paymentDone } from "@/redux/payment/paymentSlice";
+import { paymentDone } from "../../../redux/payment/paymentSlice";
+import { initializeApp } from "../../../redux/store";
 
 
 const FundDetailsPage = ({ id }) => {
+  initializeApp();
   const [route, setRoute] = useState("Login");
   const [open, setOpen] = useState(false);
   const [isClient, setIsClient] = useState(false)
@@ -33,7 +34,7 @@ const FundDetailsPage = ({ id }) => {
     if (!isLoading) {
       refetch();
     }
-  }, [])
+  }, [isLoading,refetch])
 
   useEffect(() => {
     if (paymentMade && isClient) {
@@ -42,7 +43,7 @@ const FundDetailsPage = ({ id }) => {
       });
       dispatch(paymentDone({ paymentMade: false }));
     }
-  }, [isClient]);
+  }, [isClient,dispatch,paymentMade]);
 
   useEffect(() => {
     if (config) {

@@ -8,6 +8,7 @@ import { useLoadUserQuery } from "../redux/features/api/apiSlice";
 import { useEffect, useState } from "react";
 import Loader from './components/Loader/loader.jsx';
 import "./globals.css";
+// import { dark } from "@mui/material/styles/createPalette";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,7 +32,28 @@ export default function RootLayout({ children }) {
             <Custom>
               <div>{children}</div>
             </Custom>
-            <Toaster position="top-center" reverseOrder={false} />
+            <Toaster
+              toastOptions={{
+                success: {
+                  theme: 'dark',
+                  style: {
+                    background: '#333',
+                    color: '#fff',
+                  }
+                },
+                error: {
+                  theme: 'dark',
+                  style: {
+                    background: '#ff3333',
+                    color: '#fff',
+                  }
+                }
+              }}
+              closeOnClick={true}
+              draggable={true}
+              position="bottom-center"
+              reverseOrder={false}
+            />
           </SessionProvider>
         </Providers>
       </body>
@@ -47,12 +69,12 @@ const Custom = ({ children }) => {
   useEffect(() => {
     setIsLoading(isLoad);
     // setIsClient(true);
-  }, []);
+  }, [isLoad]);
 
   // return (
-    return <>{isLoading ? <Loader /> : <div>{children}</div>}</>;
-    // <>
-    //   {isLoading ? <div><Loader /></div> : isClient && children}
-    // </>
+  return <>{isLoading ? <Loader /> : <div>{children}</div>}</>;
+  // <>
+  //   {isLoading ? <div><Loader /></div> : isClient && children}
+  // </>
   // );
 };

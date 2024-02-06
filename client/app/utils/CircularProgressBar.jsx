@@ -7,7 +7,7 @@ const CircularProgressBar = ({ percentage,size=13 }) => {
     const circumference = 2 * Math.PI * size;
     const progressOffset = circumference - (percentage / 100) * circumference;
     setOffset(progressOffset);
-  }, [percentage]);
+  }, [percentage,size]);
 
   return (
     <div className="relative inline-block">

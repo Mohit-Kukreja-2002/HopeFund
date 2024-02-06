@@ -69,8 +69,8 @@ const Navbar = ({ activeItem, setOpen, route, open, setRoute, page }) => {
                     <div className="flex items-center justify-between w-full h-full 800px:justify-normal">
                         <div className="self-center">
                             <Link href={'/'}>
-                                <Image priority className="w-auto h-auto m-0" alt='HopeFund-Logo'
-                                    width={170} height={60}
+                                <Image priority className="w-[190px] m-0" alt='HopeFund-Logo'
+                                    width={130} height={40}
                                     src={require("../../public/assets/logoo.png")} />
                             </Link>
                         </div>

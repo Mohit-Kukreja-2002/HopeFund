@@ -3,8 +3,9 @@ import Heading from '../utils/Heading'
 import Navbar from '../components/Navbar'
 import { useState } from 'react'
 import Contact from '../components/Contact/contact'
+import Footer from '../components/Footer'
 
-const contactUs = () => {
+const ContactUs = () => {
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(2);
     const [route, setRoute] = useState("Login");
@@ -26,8 +27,9 @@ const contactUs = () => {
             <div className='mt-[82px]'>
                 <Contact />
             </div>
+            <Footer/>
         </div>
     )
 }
 
-export default contactUs;
+export default ContactUs;

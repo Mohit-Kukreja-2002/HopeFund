@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     active: 1,
-    funds: [],
     fundOfType : [],
     fundOfSearch : [],
     allFundsOfUrgency : [],
@@ -15,9 +14,6 @@ const fundSlice = createSlice({
         fundRegistration: (state, action) => {
             state.active = action.payload.active;
         },
-        userFundArray : (state, action) => {
-            state.funds = action.payload.funds;
-        } ,
         fundByType : (state, action) => {
             state.fundOfType = action.payload.fundOfType;
         },
@@ -30,6 +26,6 @@ const fundSlice = createSlice({
     }
 })
 
-export const {fundRegistration,userFundArray,fundByType,fundBySearch,allFundsByUrgency} = fundSlice.actions;
+export const {fundRegistration,fundByType,fundBySearch,allFundsByUrgency} = fundSlice.actions;
 
 export default fundSlice.reducer;

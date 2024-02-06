@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import Heading from '../utils/Heading';
 import Donate from '../components/Donate/Donate';
+import Footer from '../components/Footer';
 
 const DonatePage = () => {
     const [open, setOpen] = useState(false);
@@ -29,6 +30,7 @@ const DonatePage = () => {
             <div className='mt-24'>
                 <Donate />
             </div>
+            <Footer/>
         </>
     )
 }

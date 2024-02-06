@@ -1,5 +1,5 @@
 'use client'
-import FundDetailsPage from "@/app/components/Fundraisers/FundDetailsPage";
+import FundDetailsPage from '../../components/Fundraisers/FundDetailsPage';
 import React from "react";
 
 const Page = ({params}) => {

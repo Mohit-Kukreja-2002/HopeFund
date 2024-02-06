@@ -1,5 +1,5 @@
 'use client'
-import { useAddCoverImgMutation, useDeletCoverImgMutation } from '@/redux/fund/fundApi';
+import { useAddCoverImgMutation, useDeletCoverImgMutation } from '../../../redux/fund/fundApi';
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast';
 import 'react-quill/dist/quill.snow.css';
@@ -8,6 +8,7 @@ import { AiOutlineCamera } from 'react-icons/ai';
 import Image from 'next/image';
 import dynamic from 'next/dynamic'; 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 const Page4 = ({ values, setFieldValue }) => {
     const [deleteCover, { isSuccess, error: isError }] = useDeletCoverImgMutation();
     const [addCover, { isSuccess: success, error }] = useAddCoverImgMutation();

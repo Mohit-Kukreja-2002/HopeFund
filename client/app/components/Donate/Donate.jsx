@@ -1,14 +1,11 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link';
-import CircularProgressBar from '@/app/utils/CircularProgressBar';
-import Navbar from '../Navbar';
-import { useGetAllFundsMutation, useGetFundsBySearchMutation } from '@/redux/fund/fundApi';
+import { useGetAllFundsMutation, useGetFundsBySearchMutation } from '../../../redux/fund/fundApi';
 import { useSelector } from 'react-redux';
-import useDebounce from '@/app/hooks/useDebounce';
+import useDebounce from '../../hooks/useDebounce';
 import { AiOutlineSearch } from 'react-icons/ai';
 import Loader from '../Loader/loader';
-import FundraiserCard from '@/app/utils/FundraiserCard';
+import FundraiserCard from '../../utils/FundraiserCard';
 
 const Donate = () => {
     const [search, setSearch] = useState("");

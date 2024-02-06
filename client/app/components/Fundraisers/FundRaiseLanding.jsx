@@ -1,5 +1,5 @@
 'use client'
-import FundraiserCard from '@/app/utils/FundraiserCard'
+import FundraiserCard from "../../utils/FundraiserCard"
 import { useGetFundsBySearchMutation, useGetFundsByTypeMutation } from '@/redux/fund/fundApi'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -7,7 +7,7 @@ import { FaHandHoldingHeart, FaStethoscope } from 'react-icons/fa'
 import { GiCandleLight } from 'react-icons/gi'
 import Loader from '../Loader/loader'
 import { useSelector } from 'react-redux'
-import useDebounce from '@/app/hooks/useDebounce'
+import useDebounce from "../../hooks/useDebounce"
 import Link from 'next/link'
 
 const FundRaiseLanding = () => {

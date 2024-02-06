@@ -6,7 +6,7 @@ import Hero from "./components/Hero";
 import FundRaiseLanding from "./components/Fundraisers/FundRaiseLanding";
 import Footer from "./components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { userRedirection } from "@/redux/features/auth/authSlice";
+import { userRedirection } from "../redux/features/auth/authSlice";
 import toast from "react-hot-toast";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
       });
       dispatch(userRedirection({ redirection: false }));
     }
-  }, [isClient]);
+  }, [isClient,dispatch,redirection]);
 
   useEffect(() => {
     setIsClient(true)
