@@ -30,8 +30,8 @@ const YourDonations = ({ user }) => {
           </div>
         ) : (
           data && data.resArray.length === 0 ?
-            <div className='w-full h-[300px] text-center'>
-              <div className='mt-[50px]'>
+            <div className='h-[400px] flex flex-col items-center justify-center text-center'>
+              <div>
                 Your have not donated to any cause yet.
               </div>
               <div className="mx-auto my-4 flex justify-center items-center py-2

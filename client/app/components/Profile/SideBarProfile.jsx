@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 const SideBarProfile = ({ user, active, setActive, logOutHandler, }) => {
     const {data} = useSession();
     return (
-        <div className="w-full">
+        <div>
             <div
                 className={`w-full flex items-center px-3 py-4 shadow-[0_0_30px_0_rgba(156,51,83,.2) cursor-pointer 
                     ${active === 1 ? "bg-[#9c3353]" : "bg-transparent"}`}

@@ -10,7 +10,7 @@ export const createFundraiserRequest = catchAsyncError(
   async (req, res, next) => {
     try {
 
-      console.log("backend");
+      // console.log("backend");
       const data = req.body.data;
       // console.log(data);
       // const coverImg = data.coverImg;

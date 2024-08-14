@@ -1,15 +1,17 @@
 'use client'
 import React, { useEffect, useState } from "react";
+
 import Protected from "../hooks/useProtected";
+
 import Heading from "../utils/Heading";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile/Profile.jsx";
+import Footer from "../components/Footer";
+
 import { useDispatch, useSelector } from "react-redux";
-// import Footer from "../components/Footer";
 import { useRouter } from 'next/router';
 import { fundRegistration } from "../../redux/fund/fundSlice";
-// import { useUpdateFundIDArrayMutation } from "@/redux/user/userApi";
-import Footer from "../components/Footer";
+
 const Page = (props) => {
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
@@ -20,7 +22,7 @@ const Page = (props) => {
     const [active, setActive] = useState(activeI || 1);
     dispatch(fundRegistration({ active: 1 }))
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col min-h-screen">
             <Protected>
                 <Heading
                     title={`${user?.name} profile`}
@@ -34,10 +36,10 @@ const Page = (props) => {
                     setRoute={setRoute}
                     route={route}
                 />
-                <div className="mt-20">
+                <div className="min-h-screen mt-20">
                     <Profile user={user} active={active} setActive={setActive} />
                 </div>
-                <div className="mt-auto z-[1000000]">
+                <div className="z-[1000000]">
                     <Footer />
                 </div>
             </Protected>

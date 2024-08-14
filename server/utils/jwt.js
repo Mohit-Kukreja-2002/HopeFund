@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
-import user from "../models/user.js";
 import { redis } from "./redis.js";
+
+import dotenv from 'dotenv';
 dotenv.config();
 
 // parse env var to integrate wiht fallback values

@@ -27,10 +27,12 @@ const DonatePage = () => {
                 setRoute={setRoute}
                 route={route}
             />
-            <div className='mt-24'>
+            <div className='min-h-screen mt-24'>
                 <Donate />
             </div>
-            <Footer/>
+            <div className='bottom-0'>
+                <Footer />
+            </div>
         </>
     )
 }

@@ -79,7 +79,7 @@ const FundDetailsPage = ({ id }) => {
               />
             )}
           </div>
-          <Footer />
+          <Footer/>
         </div>
       ))}
     </>

@@ -14,18 +14,40 @@ const coverImage = require('../../../public/assets/medical.jpg');
 const userImage = require('../../../public/assets/user.png');
 
 const FundraiserDetail = ({ fund, stripePromise }) => {
+  const rightBoxRef = useRef(null);
+  const leftBoxRef = useRef(null);
+  const [isFixed, setIsFixed] = useState(true)
 
-  // console.log("inside");
-  // console.log(fund)
-  // const { data: userData } = useLoadUserQuery(undefined, {});
+  const [topOffset, setTopOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (leftBoxRef.current && rightBoxRef.current) {
+        const leftBoxRect = leftBoxRef.current.getBoundingClientRect();
+        const rightBoxHeight = rightBoxRef.current.offsetHeight;
+        const offsetTop = leftBoxRef.current.offsetTop;
+
+        if (window.scrollY >= (leftBoxRef.current.offsetHeight + offsetTop - rightBoxHeight - 150)) {
+          setIsFixed(false);
+          setTopOffset(leftBoxRef.current.offsetHeight + offsetTop - rightBoxHeight - 60);
+        } else {
+          setIsFixed(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const [createPaymentIntent, { data: paymentIntentData }] = useCreatePaymentIntentMutation();
   let [clientSecret, setClientSecret] = useState("");
 
-  // console.log(fund.creatorMail)
   const { data, isLoading } = useGetUserImgQuery(fund.creatorMail);
   const ref = useRef(null)
-  // const [user, setUser] = useState();
   const [open, setOpen] = useState(false);
   const [donationAmount, setDonationAmount] = useState(500);
   const [open1, setOpen1] = useState(false);
@@ -53,7 +75,7 @@ const FundraiserDetail = ({ fund, stripePromise }) => {
               <div className="flex">
 
                 {/* Left Box */}
-                <div className="mx-auto 400px:w-[380px] 500px:w-[500px] 600px:w-[550px] 1100px:w-[500px] 1200px:w-[550px] 1400px:w-[650px] 1100px:ml-[100px] 1400px:ml-[200px] 1200px:ml-[130px] 1300px:ml-[200px] 1500px:ml-[240px]">
+                <div ref={leftBoxRef} className="mx-auto 400px:w-[380px] 500px:w-[500px] 600px:w-[550px] 1100px:w-[500px] 1200px:w-[550px] 1400px:w-[650px] 1100px:ml-[100px] 1400px:ml-[200px] 1200px:ml-[130px] 1300px:ml-[200px] 1500px:ml-[240px]">
                   {/* Label */}
                   {fund.verified &&
                     <div className="bg-[#f3f3f3] rounded-[0_0_4px_4px] text-[#212121] p-[10px] text-center text-[14px] w-full leading-[22px] ">
@@ -159,8 +181,12 @@ const FundraiserDetail = ({ fund, stripePromise }) => {
 
 
                 {/* right box */}
-                <div ref={ref} className={`hidden 1100px:block 1100px:transition-transform 1100px:duration-10000 1100px:fixed  1100px:right-[70px] 1200px:right-[120px] 1400px:right-[130px] 1500px:right-[180px] `}>
-                  <div className="pt-3 mx-8 top-0 sticky w-[390px] bg-[#f7f7f7] shadow-[-7px_-2px_14px_0_rgba(150,51,83,0.28)]">
+                <div ref={rightBoxRef} className={`hidden 1100px:block 1100px:transition-transform 1100px:duration-10000 ${isFixed ? '1100px:fixed' : '1100px:absolute'} 1100px:right-[70px] 1200px:right-[120px] 1400px:right-[130px] 1500px:right-[180px]`}
+                  style={{ top: isFixed ? '80px' : `${topOffset}px` }} // Adjust offset if necessary
+                >
+                  {/* <div ref={rightBoxRef} className={`hidden 1100px:block 1100px:transition-transform 1100px:duration-10000 ${isFixed ? '1100px:fixed' : '1100px:sticky'} 1100px:right-[70px] 1200px:right-[120px] 1400px:right-[130px] 1500px:right-[180px]`}> */}
+                  {/* <div ref={rightBoxRef} className={`hidden 1100px:block 1100px:transition-transform 1100px:duration-10000 1100px:right-[70px] 1200px:right-[120px] 1400px:right-[130px] 1500px:right-[180px] `}> */}
+                  <div className="pt-3 mx-8 w-[390px] bg-[#f7f7f7] shadow-[-7px_-2px_14px_0_rgba(150,51,83,0.28)]">
                     {/*Donate*/}
                     <div className="flex m-[0_30px] ">
                       <img className="w-[30px]" src="https://assets-give.milaap.org/assets/donate-icon-7cabb309d2c7a586a914c0a23abe52032aa0ce01115fb54e07c6148ab2cf8c6a.svg" alt="" />
@@ -201,7 +227,7 @@ const FundraiserDetail = ({ fund, stripePromise }) => {
 
                     {/* Qr Box */}
                     <div onClick={handleOrder} className="relative pb-[10px] text-center m-[20px_30px] flex justify-center ">
-                      <Image className="opacity-30 border-[1px] border-solid border-[#707070] p-[10px] " alt='Qrcode' width={170} priority height={170} src={"/assets/Qrcode.jpg"} />
+                      <Image className="opacity-30 border-[1px] border-solid border-[#707070] p-[10px] " alt='Qrcode' width={70} priority height={70} src={"/assets/Qrcode.jpg"} />
                       <p className="cursor-pointer h-[30px] top-[70px] absolute bg-white  border-[1px] border-solid border-[#9c3353] leading-[24px] p-[3px_0] text-[#9c3353] rounded-[25px] shadow-[0_0_6px_0_rgba(156,51,83,.2)] tracking-wider w-[160px] hover:shadow-[0_3px_3px_0_rgba(0,0,0,.14),0_1px_7px_0_rgba(0,0,0,.12),0_3px_1px_-1px_rgba(0,0,0,.2)]">Generate Qr</p>
                     </div>
 
