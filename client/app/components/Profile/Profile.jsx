@@ -36,6 +36,7 @@ const Profile = ({ user, active, setActive }) => {
   useEffect(() => {
     const handleScroll = () => {
       if (leftBoxRef.current && rightBoxRef.current) {
+        // scroll
         const rightBoxHeight = rightBoxRef.current.offsetHeight;
         const offsetTop = leftBoxRef.current.offsetTop;
 
